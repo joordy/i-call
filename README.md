@@ -1,5 +1,18 @@
 # Real-Time Web @cmda-minor-web · 2020/21
 
+Possible ideas:
+
+- Real time live coder (codepen?)
+- Zoom/Skype clone
+- Realtime editor
+- Realtime order system (food orderning)
+  <!-- - https://github.com/codersgyan/realtime-pizza-app-node-express-mongo -->
+  <!-- - https://www.youtube.com/watch?v=Mor2c9RW1Oo&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&index=10 -->
+- Game (snake?)
+  <!-- - https://www.youtube.com/watch?v=0zTY73khJPM -->
+  <!-- https://www.youtube.com/watch?v=ppcBIHv_ZPs&t=2217s -->
+- Chat room based on preferences
+
 ## 🔦 **Description**
 
 ## 🌐 **Live link**
@@ -13,7 +26,7 @@
 ### Clone the repository
 
 ```bash
-  git clone https://github.com/joordy/progressive-web-apps-2021.git
+  git clone https://github.com/joordy/real-time-web-2021.git
 ```
 
 ### Navigate to the repository and install the packages
