@@ -1,0 +1,31 @@
+{
+  "name": "real-time-web-2021",
+  "version": "1.0.0",
+  "description": "Real Time Web application",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joordy/real-time-web-2021.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joordy/real-time-web-2021/issues"
+  },
+  "homepage": "https://github.com/joordy/real-time-web-2021#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "eslint": "^7.23.0",
+    "prettier": "^2.2.1"
+  }
+}
