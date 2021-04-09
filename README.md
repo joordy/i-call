@@ -13,6 +13,16 @@ Possible ideas:
   <!-- https://www.youtube.com/watch?v=ppcBIHv_ZPs&t=2217s -->
 - Chat room based on preferences
 
+## Data flow Diagram
+
+https://asciiflow.com/#/
+
+- Teken alle grote componenten (client, server, API)
+- Schrijf onder elk component wat er in het datamodel aanwezig is
+- Teken de lijnen/pijlen voor data die tussen componenten gedeeld worden
+- Voeg de methode voor verkrijgen en versturen van data (pub/sub, http request/response, socket request/response, authorization, Oauth)
+- Voeg deze data-flow toe aan je readme
+
 ## 🔦 **Description**
 
 ## 🌐 **Live link**
