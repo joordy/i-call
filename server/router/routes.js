@@ -11,6 +11,8 @@ const { rooms } = require('./../renders/rooms')
 // Setting get routes
 router.get('/', home)
 router.get('/dashboard', dashboard)
+router.get('/rooms/:roomID', rooms)
+
 // router.get('*', notFound)
 
 router.post('/rooms/:roomID', rooms)

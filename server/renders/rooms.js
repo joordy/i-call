@@ -1,3 +1,5 @@
+const { v4: uuidV4 } = require('uuid')
+
 // Home route function
 const rooms = async (req, res) => {
   try {
@@ -5,7 +7,7 @@ const rooms = async (req, res) => {
     res.render('rooms', {
       room: room,
       pageInf: {
-        script: 'js/socketScript.js',
+        script: 'js/videoScript.js',
         sockets: '/socket.io/socket.io.js',
         title: 'Rooms',
       },

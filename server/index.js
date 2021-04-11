@@ -5,9 +5,11 @@ const app = express()
 const path = require('path')
 const expressHandlebars = require('express-handlebars')
 const router = require('./router/routes')
+const initSocketIO = require('./utils/socket')
 const server = http.createServer(app)
-const { initSocketIO } = require('./utils/socket')
-const port = process.env.PORT || 3333
+const { ExpressPeerServer } = require('peer')
+const serverPeer = ExpressPeerServer(server, { debug: true })
+const port = process.env.PORT || 3030
 require('dotenv').config()
 
 const hbs = expressHandlebars.create({
@@ -35,6 +37,7 @@ app
   .use(express.json())
   .use(express.static('public'))
   .use(router)
+  .use('/peerjs', serverPeer)
   .use((request, response, next) => {
     if (process.env.NODE_ENV != 'development' && !request.secure) {
       return response.redirect('https://' + request.headers.host + request.url)
