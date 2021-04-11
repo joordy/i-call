@@ -1,0 +1,13 @@
+<body>
+  <h1>dashboard</h1>
+
+  <h2>Create room</h2>
+  <form action="/rooms/{{roomIDS}}" method="POST">
+    <fieldset>    
+      <input type="hidden" name="roomIDS" value="{{roomIDS}}">
+      <input type="submit" value="enter">
+    </fieldset>
+  </form>
+
+  {{!-- <form action=""></form> --}}
+</body>
