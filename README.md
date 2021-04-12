@@ -2,26 +2,30 @@
 
 ## **Concepts**
 
-<details style="margin: 1em 0;">
+|                                              Sketch 1, game with multiple pokemon                                               |                                                      Location based rooms (map)                                                      |                                                      Trending Twitter hashtags                                                      |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: |
+| ![Location based volume](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png) | ![Location based rooms (map)](https://user-images.githubusercontent.com/48051912/114401928-a54a0c00-9ba3-11eb-9542-4e321f737c30.png) | ![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/114401919-a418df00-9ba3-11eb-96a4-f957322c5011.png) |
+
+<!-- <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Location based volume</summary>
 
-![Screen Shot 2021-04-12 at 15 26 59](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png)
+![Location based volume](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png)
 
 </details>
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Location based rooms (map)</summary>
 
-![Screen Shot 2021-04-12 at 15 26 51](https://user-images.githubusercontent.com/48051912/114401928-a54a0c00-9ba3-11eb-9542-4e321f737c30.png)
+![Location based rooms (map)](https://user-images.githubusercontent.com/48051912/114401928-a54a0c00-9ba3-11eb-9542-4e321f737c30.png)
 
 </details>
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Trending Twitter hashtags</summary>
-  
+
 ![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/114401919-a418df00-9ba3-11eb-96a4-f957322c5011.png)
 
-</details>
+</details> -->
 
 <!-- Possible ideas:
 
@@ -36,7 +40,9 @@
   https://www.youtube.com/watch?v=ppcBIHv_ZPs&t=2217s
 - Chat room based on preferences -->
 
-## Data flow Diagram
+---
+
+## **Data flow Diagram**
 
 https://asciiflow.com/#/
 
@@ -48,11 +54,33 @@ https://asciiflow.com/#/
 
 ## 🔦 **Description**
 
+lorem
+
+---
+
 ## 🌐 **Live link**
+
+You can visit the [iCall application](https://i-call.herokuapp.com/) here
+
+---
 
 ## 🚀 **Features**
 
+### **Sockets**
+
+lorem
+
+### **Peer.js**
+
+lorem
+
+---
+
 ## 📦 **NPM Packages**
+
+- [peerJS](https://peerjs.com/)
+
+---
 
 ## 💻 **Installation**
 
@@ -79,24 +107,35 @@ https://asciiflow.com/#/
 
 ### **Deploy the project**
 
-**Visit heroku.com**
+- **Visit heroku**
 
-[https://www.heroku.com/](https://www.heroku.com/)
+  [https://www.heroku.com/](https://www.heroku.com/)
 
-**Create app**
+- **Create app**
 
-Dashboard > New > Create new app
+  Dashboard > New > Create new app
 
-\*\*Connect Github Repository
+- **Connect Github Repository**
 
-####
+  Set master branch as deployment branch
+
+- **Open application**
+
+  On the custom domain which is how you've called your project
+
+---
 
 ## 🔍 **Sources**
 
 - https://peerjs.com/
--
+
+---
 
 ## 🔐 **License**
+
+This is a repository which is licensed as [MIT](https://github.com/joordy/i-call/blob/master/LICENSE). Developed by Jordy Fronik ©️ 2021.
+
+---
 
 <!-- Here are some hints for your project! -->
 
