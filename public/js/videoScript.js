@@ -6,8 +6,16 @@ const myPeerConnection = new Peer(undefined, {
 })
 const path = window.location.pathname
 const roomID = path.replace('/rooms/', '')
-const videoContainer = document.querySelector('.videoGrid')
 const userVideo = document.createElement('video')
+const videoContainer = document.querySelector('.videoGrid')
+// const muteMyself = document.querySelector('#muteMyself')
+// const stopVideo = document.querySelector('#stopVideo')
+// const endCall = document.querySelector('#endCall')
+// const inviteUser = document.querySelector('#inviteUser')
+// const openChat = document.querySelector('#openChat')
+
+console.log(muteMyself, stopVideo, endCall, inviteUser, openChat)
+
 const allPeers = {}
 userVideo.muted = true
 
@@ -24,7 +32,7 @@ navigator.mediaDevices
     let myVideoStream
     myVideoStream = stream
     addVideoToPage(userVideo, stream)
-
+    videoEvents()
     myPeerConnection.on('call', (callUser) => {
       const video = document.createElement('video')
       callUser.answer(stream)
@@ -62,3 +70,62 @@ function addVideoToPage(video, stream) {
   })
   videoContainer.append(video)
 }
+
+function videoEvents() {
+  const muteMyself = document.querySelector('#muteMyself')
+  const stopVideo = document.querySelector('#stopVideo')
+  const endCall = document.querySelector('#endCall')
+  const inviteUser = document.querySelector('#inviteUser')
+  const openChat = document.querySelector('#openChat')
+
+  muteMyself.addEventListener('click', (e) => {
+    console.log('A')
+    console.log(muteMyself)
+  })
+  stopVideo.addEventListener('click', (e) => {
+    console.log('B')
+    console.log(stopVideo)
+  })
+  endCall.addEventListener('click', (e) => {
+    console.log('C')
+    console.log(endCall)
+  })
+  inviteUser.addEventListener('click', (e) => {
+    console.log('D')
+    console.log(inviteUser)
+  })
+  openChat.addEventListener('click', (e) => {
+    const chat = document.querySelector('.chatGrid')
+    openChat.classList.toggle('activeMenuItem')
+    chat.classList.toggle('active')
+    videoContainer.classList.toggle('active')
+    // chat.width = '30%'
+    console.log('E')
+    console.log(openChat)
+  })
+}
+
+// muteMyself.addEventListener('click', (e) => {
+//   console.log('A')
+//   console.log(muteMyself)
+// })
+
+// stopVideo.addEventListener('click', (e) => {
+//   console.log('B')
+//   console.log(stopVideo)
+// })
+
+// endCall.addEventListener('click', (e) => {
+//   console.log('C')
+//   console.log(endCall)
+// })
+
+// inviteUser.addEventListener('click', (e) => {
+//   console.log('D')
+//   console.log(inviteUser)
+// })
+
+// openChat.addEventListener('click', (e) => {
+//   console.log('E')
+//   console.log(openChat)
+// })
