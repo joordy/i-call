@@ -9,6 +9,12 @@
   line-height: 1;
 }
 
+a,
+button,
+li {
+  cursor: pointer;
+}
+
 html {
   font-size: 16px;
 }
@@ -16,16 +22,4 @@ html {
 body {
   background-color: #21242b;
   color: #eeeeef;
-}
-
-.videoGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 400px);
-  grid-auto-rows: 300px;
-}
-
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
