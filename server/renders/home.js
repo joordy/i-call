@@ -1,7 +1,6 @@
 // Home route function
 const home = async (req, res) => {
   try {
-    tester()
     res.render('home', {
       pageInf: {
         title: 'Rooms',
