@@ -1,17 +1,40 @@
 # Real-Time Web @cmda-minor-web · 2020/21
 
-Possible ideas:
+## **Concepts**
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Location based volume</summary>
+
+![Screen Shot 2021-04-12 at 15 26 59](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png)
+
+</details>
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Location based rooms (map)</summary>
+
+![Screen Shot 2021-04-12 at 15 26 51](https://user-images.githubusercontent.com/48051912/114401928-a54a0c00-9ba3-11eb-9542-4e321f737c30.png)
+
+</details>
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Trending Twitter hashtags</summary>
+  
+![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/114401919-a418df00-9ba3-11eb-96a4-f957322c5011.png)
+
+</details>
+
+<!-- Possible ideas:
 
 - Real time live coder (codepen?)
 - Zoom/Skype clone
 - Realtime editor
 - Realtime order system (food orderning)
-  <!-- - https://github.com/codersgyan/realtime-pizza-app-node-express-mongo -->
-  <!-- - https://www.youtube.com/watch?v=Mor2c9RW1Oo&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&index=10 -->
+  - https://github.com/codersgyan/realtime-pizza-app-node-express-mongo
+  - https://www.youtube.com/watch?v=Mor2c9RW1Oo&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&index=10
 - Game (snake?)
-  <!-- - https://www.youtube.com/watch?v=0zTY73khJPM -->
-  <!-- https://www.youtube.com/watch?v=ppcBIHv_ZPs&t=2217s -->
-- Chat room based on preferences
+  - https://www.youtube.com/watch?v=0zTY73khJPM
+  https://www.youtube.com/watch?v=ppcBIHv_ZPs&t=2217s
+- Chat room based on preferences -->
 
 ## Data flow Diagram
 
@@ -33,29 +56,40 @@ https://asciiflow.com/#/
 
 ## 💻 **Installation**
 
-### Clone the repository
+### **Work on the project**
 
-```bash
-  git clone https://github.com/joordy/real-time-web-2021.git
-```
+- **Clone the repository**
+  ```bash
+    git clone https://github.com/joordy/real-time-web-2021.git
+  ```
+- **Navigate to the repository and install the packages**
+  ```bash
+    npm install
+  ```
+- **Start local dev environment**
 
-### Navigate to the repository and install the packages
+  ```bash
+    npm run dev
+  ```
 
-```bash
-  npm install
-```
+- **Build export for deployment**
+  ```bash
+    npm run build
+  ```
 
-### Start local dev environment
+### **Deploy the project**
 
-```bash
- npm run dev
-```
+**Visit heroku.com**
 
-### Build export for deployment
+[https://www.heroku.com/](https://www.heroku.com/)
 
-```bash
- npm run build
-```
+**Create app**
+
+Dashboard > New > Create new app
+
+\*\*Connect Github Repository
+
+####
 
 ## 🔍 **Sources**
 

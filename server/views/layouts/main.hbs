@@ -19,6 +19,10 @@
     <link rel="shortcut icon" type="image/png" href="assets/icon.png"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    {{#if pageInf.styles}}
+      <link rel="stylesheet" href="css/{{pageInf.styles}}">
+    {{/if}}
+
     <title>{{pageInf.title}}</title>
 </head>
 
@@ -27,7 +31,7 @@
     <script defer src="js/script.js"></script>
     <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
     <script defer src ="/socket.io/socket.io.js"></script>
-    <script defer src="{{pageInf.script}}"></script>
+    <script defer src="js/{{pageInf.script}}"></script>
 
 
 </html>

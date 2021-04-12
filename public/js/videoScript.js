@@ -13,6 +13,8 @@ userVideo.muted = true
 
 console.log(roomID)
 
+console.log('navigator', navigator)
+console.log('navigator.mediaDevices', navigator.mediaDevices)
 navigator.mediaDevices
   .getUserMedia({
     video: true,

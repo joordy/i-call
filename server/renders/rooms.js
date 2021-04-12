@@ -7,7 +7,8 @@ const rooms = async (req, res) => {
     res.render('rooms', {
       room: room,
       pageInf: {
-        script: 'js/videoScript.js',
+        styles: 'rooms.css',
+        script: 'videoScript.js',
         sockets: '/socket.io/socket.io.js',
         title: 'Rooms',
       },
