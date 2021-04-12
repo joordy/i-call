@@ -1,11 +1,25 @@
-.videoGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 400px);
-  grid-auto-rows: 300px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
 }
 
-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+a,
+button,
+li {
+  cursor: pointer;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: #21242b;
+  color: #eeeeef;
 }

@@ -3,26 +3,18 @@ const express = require('express')
 const http = require('http')
 const app = express()
 const path = require('path')
-const expressHandlebars = require('express-handlebars')
 const router = require('./router/routes')
-const initSocketIO = require('./utils/socket')
-const server = http.createServer(app)
-const { ExpressPeerServer } = require('peer')
-const serverPeer = ExpressPeerServer(server, { debug: true })
+const hbs = require('./utils/hbsSetup')
 const port = process.env.PORT || 3030
 require('dotenv').config()
 
-const hbs = expressHandlebars.create({
-  defaultLayout: 'main',
-  layoutsDir: path.join(__dirname, './views/layouts'),
-  partialsDir: './views/components',
-  extname: '.hbs',
-  helpers: {
-    listen: (input) => {
-      return console.log(input)
-    },
-  },
-})
+// Sockets
+const initSocketIO = require('./utils/socket')
+const server = http.createServer(app)
+
+// PeerJS
+const { ExpressPeerServer } = require('peer')
+const serverPeer = ExpressPeerServer(server, { debug: true })
 
 app
   .enable('trust proxy')
