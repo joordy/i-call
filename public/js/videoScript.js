@@ -13,7 +13,8 @@ let browserUserMedia =
 let peerConnection = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3131',
+  // port: '3131',
+  port: '443',
 })
 
 navigator.mediaDevices
