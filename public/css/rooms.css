@@ -19,8 +19,8 @@ main .videoGrid {
 }
 
 main video {
-  width: clamp(300px, 50vw, 100vw);
-  height: clamp(300px, 50vh, 100vh);
+  width: clamp(300px, 45%, 100vw);
+  height: clamp(300px, 30vh, 100vh);
   object-fit: cover;
   border-radius: 8px;
 }

@@ -5,16 +5,17 @@ const app = express()
 const path = require('path')
 const router = require('./router/routes')
 const hbs = require('./utils/hbsSetup')
-const port = process.env.PORT || 1313
+const port = process.env.PORT || 3131
 require('dotenv').config()
 
 // Sockets
-const initSocketIO = require('./utils/socket')
+// const initSocketIO = require('./utils/socket')
 const server = http.createServer(app)
+const io = require('socket.io')(server)
 
 // PeerJS
 const { ExpressPeerServer } = require('peer')
-const serverPeer = ExpressPeerServer(server, { debug: true })
+const peerServer = ExpressPeerServer(server, { debug: true })
 
 app
   .enable('trust proxy')
@@ -29,7 +30,7 @@ app
   .use(express.json())
   .use(express.static('public'))
   .use(router)
-  .use('/peerjs', serverPeer)
+  .use('/peerjs', peerServer)
   .use((request, response, next) => {
     if (process.env.NODE_ENV != 'development' && !request.secure) {
       return response.redirect('https://' + request.headers.host + request.url)
@@ -37,7 +38,14 @@ app
     next()
   })
 
-initSocketIO(server)
+io.on('connection', (socket) => {
+  socket.on('join-room', (room_ID, user_ID) => {
+    socket.join(room_ID)
+    socket.broadcast.to(room_ID).emit('user-connected', user_ID)
+  })
+})
+
+// initSocketIO(server)
 
 // Launch application
 server.listen(port, () => {
