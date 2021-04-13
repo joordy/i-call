@@ -1,25 +1,12 @@
-// // const server = require('http').Server(app)
-// // const io = require('socket.io')(server)
-
-// // const initSocketIO = (server) => {
-// //   const io = require('socket.io')(server)
-
-// //   io.on('connection', (socket) => {
-// //     socket.on('join-room', (roomID, userID) => {
-// //       console.log('socket:', roomID, userID)
-// //     })
-// //   })
-// // }
-
 const initSocketIO = (server) => {
   const io = require('socket.io')(server)
-
   io.on('connection', (socket) => {
     console.log('socket appeared')
-    socket.on('join-room', (roomID, userId) => {
-      console.log(`you've joined the room`)
-      socket.join(roomID)
-      socket.broadcast.emit('user-connected', userId)
+    io.on('connection', (socket) => {
+      socket.on('join-room', (room_ID, user_ID) => {
+        socket.join(room_ID)
+        socket.broadcast.to(room_ID).emit('user-connected', user_ID)
+      })
     })
   })
 }

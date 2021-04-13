@@ -1,18 +1,20 @@
-const socket = io(window.location.origin)
-const myPeerConnection = new Peer(undefined, {
-  path: '/peerjs',
-  host: '/',
-  port: '3030',
-})
+const socket = io('/')
 const path = window.location.pathname
 const roomID = path.replace('/rooms/', '')
+const videoGridContainer = document.querySelector('.videoGrid')
 const userVideo = document.createElement('video')
-const videoContainer = document.querySelector('.videoGrid')
-const allPeers = {}
-let myVideoStream
 userVideo.muted = true
+let myVideoStream
 
-console.log(roomID)
+let browserUserMedia =
+  navigator.getUserMedia ||
+  navigator.webkitGetUserMedia ||
+  navigator.mozGetUserMedia
+let peerConnection = new Peer(undefined, {
+  path: '/peerjs',
+  host: '/',
+  port: '3131',
+})
 
 navigator.mediaDevices
   .getUserMedia({
@@ -21,44 +23,60 @@ navigator.mediaDevices
   })
   .then((stream) => {
     myVideoStream = stream
-    addVideoToPage(userVideo, stream)
-    videoEvents()
-    myPeerConnection.on('call', (callUser) => {
+    addNewUserVideoStream(userVideo, stream)
+
+    peerConnection.on('call', (answerCall) => {
       const video = document.createElement('video')
-      callUser.answer(stream)
-      callUser.on('stream', (userVideoStream) => {
-        addVideoToPage(video, userVideoStream)
+      answerCall.answer(stream)
+      answerCall.on('stream', (newUserStream) => {
+        addNewUserVideoStream(video, newUserStream)
       })
     })
 
-    socket.on('user-connected', (userId) => {
-      connectWithNewUser(userId, stream)
+    socket.on('user-connected', (userID) => {
+      newUserConnected(userID, stream)
     })
+    videoEvents()
   })
 
-// Socket scripts
+peerConnection.on('call', (answerCall) => {
+  browserUserMedia(
+    { video: true, audio: true },
+    function (stream) {
+      const video = document.createElement('video')
+      answerCall.answer(stream)
+      answerCall.on('stream', function (remoteStream) {
+        addNewUserVideoStream(video, remoteStream)
+      })
+    },
+    function (err) {
+      console.log('Failed to get local stream', err)
+    }
+  )
+})
 
-console.log(socket)
-
-myPeerConnection.on('open', (id) => {
-  console.log(id)
+peerConnection.on('open', (id) => {
   socket.emit('join-room', roomID, id)
 })
 
-function connectWithNewUser(userId, stream) {
-  const callUser = myPeerConnection.call(userId, stream)
+console.log(socket)
+
+function newUserConnected(userID, streams) {
+  console.log('new user connected')
+  const callUser = peerConnection.call(userID, streams)
   const video = document.createElement('video')
-  callUser.on('stream', (userVideoStream) => {
-    addVideoToPage(video, userVideoStream)
+  callUser.on('stream', (newUserStream) => {
+    console.log(newUserStream)
+    addNewUserVideoStream(video, newUserStream)
   })
 }
 
-function addVideoToPage(video, stream) {
-  video.srcObject = stream
-  video.addEventListener('loadedmetadata', () => {
-    video.play()
+function addNewUserVideoStream(videoElement, stream) {
+  videoElement.srcObject = stream
+  videoElement.addEventListener('loadedmetadata', () => {
+    videoElement.play()
   })
-  videoContainer.append(video)
+  videoGridContainer.append(videoElement)
 }
 
 function videoEvents() {

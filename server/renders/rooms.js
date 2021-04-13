@@ -1,12 +1,11 @@
-const { v4: uuidV4 } = require('uuid')
 const fetcher = require('../utils/fetch')
 
 // Home route function
 const rooms = async (req, res) => {
   try {
     const response = await fetcher('https://cat-fact.herokuapp.com/facts')
-    console.log(response)
-    const room = req.body.roomIDS
+    // console.log(response)
+    const room = req.params.roomID
     res.render('rooms', {
       room: room,
       pageInf: {
