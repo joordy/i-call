@@ -1,6 +1,24 @@
+body {
+  position: relative;
+}
+
+header {
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header p {
+  font-size: 0.8rem;
+}
+
 main {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 main section {
@@ -78,6 +96,7 @@ main .videoGrid .invitePopUp input {
   width: 80%;
   margin: 0 auto;
   padding: 0.5rem;
+  text-align: center;
   border: none;
   border-radius: 4px 4px 0 0;
 }
@@ -93,6 +112,40 @@ main .chatGrid {
   height: 30vh;
   background-color: bisque;
   transition: 0.3s ease;
+  position: relative;
+}
+
+main .chatGrid article:first-of-type {
+  height: calc(100% - 40px);
+  width: 100%;
+}
+
+main .chatGrid article ul {
+  list-style-position: inside;
+  color: black;
+}
+main .chatGrid article:last-of-type {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+main .chatGrid article:last-of-type form {
+  display: flex;
+}
+main .chatGrid article:last-of-type form input[type='text'] {
+  font-size: 16px;
+  padding: 5px;
+  height: 40px;
+  flex: 1;
+}
+
+main .chatGrid article:last-of-type form button {
+  padding: 5px 15px;
+  background: white;
+  color: red;
+  border: 0;
+  font-size: 17px;
 }
 
 /** States **/
@@ -109,19 +162,19 @@ main .chatGrid {
     width: 100%;
   }
   main .videoGrid.active {
-    width: clamp(calc(100% - 250px), calc(100% - 30vw), calc(100% - 400px));
+    width: clamp(calc(100% - 300px), calc(100% - 40vw), calc(100% - 600px));
   }
   main .chatGrid {
     width: 0%;
     transform: translateX(40%);
   }
   main .chatGrid.active {
-    width: clamp(250px, 30vw, 400px);
+    width: clamp(300px, 40vw, 600px);
     transform: translateX(0);
   }
   main .videoGrid,
   main .chatGrid {
-    height: calc(100vh - 32px - 18px);
+    height: 100vh;
   }
 
   main .videoGrid aside {

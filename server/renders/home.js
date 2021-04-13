@@ -1,7 +1,11 @@
+const { v4: uuidV4 } = require('uuid')
+
 // Home route function
 const home = async (req, res) => {
   try {
+    console.log(uuidV4())
     res.render('home', {
+      roomIDS: uuidV4(),
       pageInf: {
         title: 'Rooms',
       },
@@ -12,4 +16,4 @@ const home = async (req, res) => {
 }
 
 // Export route
-module.exports = { home }
+module.exports = home

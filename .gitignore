@@ -1,3 +1,4 @@
 _coursefiles/
 node_modules/
 _trash/
+.env

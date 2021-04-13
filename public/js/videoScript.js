@@ -3,6 +3,12 @@ const path = window.location.pathname
 const roomID = path.replace('/rooms/', '')
 const videoGridContainer = document.querySelector('.videoGrid')
 const userVideo = document.createElement('video')
+const chatForm = document.querySelector('#form')
+const chatMsg = document.querySelector('#chatMsg')
+const chatMessages = document.querySelector('#chatMessages')
+const userName = document.querySelector('#userName').innerHTML
+console.log(userName)
+
 userVideo.muted = true
 let myVideoStream
 
@@ -13,8 +19,8 @@ let browserUserMedia =
 let peerConnection = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  // port: '3131',
-  port: '443',
+  port: '3131', // Development Port
+  // port: '443', // Heroku Port
 })
 
 navigator.mediaDevices
@@ -37,6 +43,42 @@ navigator.mediaDevices
     socket.on('user-connected', (userID) => {
       newUserConnected(userID, stream)
     })
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault()
+      // console.log('test')
+      if (chatMsg.value != '') {
+        socket.emit('message', {
+          msg: chatMsg.value,
+          user: userName,
+        })
+        chatMsg.value = ''
+      }
+    })
+
+    socket.on('createMessage', (message) => {
+      const chats = document.querySelector('.chatMessages')
+      const listItem = document.createElement('li')
+      const textItem = document.createElement('p')
+      const sender = document.createElement('p')
+      const senderText = document.createTextNode(message.user)
+      const textItemText = document.createTextNode(message.msg)
+      sender.appendChild(senderText)
+      textItem.appendChild(textItemText)
+      listItem.appendChild(sender)
+      listItem.appendChild(textItem)
+      chats.appendChild(listItem)
+      console.log(message)
+      // $('ul').append(`<li class="message"><b>user</b><br/>${message}</li>`);
+      // scrollToBottom();
+    })
+
+    // socket.on('chat message', function (msg) {
+    //   var item = document.createElement('div')
+    //   item.textContent = msg
+    //   chatMessages.appendChild(item)
+    //   window.scrollTo(0, document.body.scrollHeight)
+    // })
     videoEvents()
   })
 
@@ -57,10 +99,15 @@ peerConnection.on('call', (answerCall) => {
 })
 
 peerConnection.on('open', (id) => {
-  socket.emit('join-room', roomID, id)
+  socket.emit('join-room', { room_ID: roomID, peer_ID: id, userName: userName })
 })
 
 console.log(socket)
+
+socket.on('message', (message) => {
+  console.log(message)
+  // outputMessage(message)
+})
 
 function newUserConnected(userID, streams) {
   console.log('new user connected')
@@ -121,25 +168,25 @@ function videoEvents() {
 
   inviteUser.addEventListener('click', (e) => {
     const invitePopUp = document.querySelector('.invitePopUp')
-    const roomID = document.querySelector('#roomID')
+    const invitationID = document.querySelector('#invitationID')
     inviteUser.classList.toggle('activeMenuItem')
     invitePopUp.classList.toggle('activePopup')
-    roomID.value = window.location.href
+    invitationID.value = roomID
   })
 
   openChat.addEventListener('click', (e) => {
     const chat = document.querySelector('.chatGrid')
     openChat.classList.toggle('activeMenuItem')
     chat.classList.toggle('active')
-    videoContainer.classList.toggle('active')
+    videoGridContainer.classList.toggle('active')
   })
 
   copyBtn.addEventListener('click', (e) => {
     const invitePopUp = document.querySelector('.invitePopUp')
-    const roomID = document.querySelector('#roomID')
+    const invitationID = document.querySelector('#invitationID')
     const inputEl = document.createElement('input')
     document.body.appendChild(inputEl)
-    inputEl.value = roomID.value
+    inputEl.value = invitationID.value
     inputEl.select()
     document.execCommand('copy', false)
     inputEl.remove()
