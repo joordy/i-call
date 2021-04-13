@@ -1,4 +1,34 @@
-<h1>Hallo</h1>
+<body>
+  <header>
+    <h1>I-Call</h1>
+  </header>
 
-<a href="/dashboard">Dashboard</a>
+  <main>
+    <a href="/createroom">Create room</a>
 
+    <section>
+      <h2>Create room</h2>
+      <form action="/rooms/{{roomIDS}}" method="POST">
+        <fieldset>    
+          <input type="hidden" name="roomID" value="{{roomIDS}}">
+          <label for="userName">Username: </label>
+          <input type="text" name="userName" id="userName">
+          <input type="submit" value="enter">
+        </fieldset>
+      </form>
+    </section>
+
+    <section>
+      <h2>Enter room</h2>
+      <form action="/rooms/invite" method="POST">
+        <fieldset>
+          <label for="roomID">ID: </label>
+          <input type="text" name="roomID" id="roomID" >
+          <label for="userName">Username: </label>
+          <input type="text" name="userName" id="userName">
+          <input type="submit" value="Enter room">
+        </fieldset>
+      </form>
+    </section>
+  </main>
+</body>

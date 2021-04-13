@@ -1,6 +1,8 @@
 <body>
   <header>
-    <h1>Hi! Welcome in your room</h1>
+    <h1>iCall</h1>
+    <p>Room ID: {{room}}</p>
+    <p  id="userName">{{userName}}</p>
   </header>
 
   <main>
@@ -15,17 +17,36 @@
         </ul>
       </aside>
       <div class="invitePopUp">
-         <input type="text" name="roomID" id="roomID">
-         <button id="copyRoomID">Copy invitation link</button>
+         <input type="text" name="invitationID" id="invitationID">
+         <button id="copyRoomID">Copy invitation ID</button>
       </div> 
     </section>
     <section class="chatGrid">
+        <article >
+          <ul class="chatMessages">
+
+          </ul>
+        </article>
+        <article class="chatForm">
+          <form id="form" action="">
+            <input
+              id="chatMsg"
+              type="text"
+              placeholder="Enter text message"
+              autocomplete="off"
+              required
+            />
+            <button class="chatBtn">Send</button>
+          </form>
+        </article>
     </section>
 
   </main>
     
-  <footer>
+  {{!-- <footer>
     <p>Your room ID is <span id="roomID">{{room}}</span></p>
-  </footer>
+  </footer> --}}
+  script
+  <script defer src="js/{{pageInf.script}}"></script>
 </body>
 
