@@ -19,8 +19,8 @@ main .videoGrid {
 }
 
 main video {
-  width: min(300px, 50vw);
-  height: min(300px, 50vh);
+  width: clamp(300px, 50vw, 100vw);
+  height: clamp(300px, 50vh, 100vh);
   object-fit: cover;
   border-radius: 8px;
 }
@@ -31,15 +31,15 @@ main .videoGrid aside {
   border-radius: 8px;
   position: absolute;
   bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 main .videoGrid aside ul {
   height: 100%;
   padding: 0.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -51,9 +51,44 @@ main .videoGrid aside ul li {
 
 main .videoGrid aside ul li:nth-child(3) {
   background-color: rgb(170 0 0);
-  padding: 1rem 4rem;
 }
 
+main .videoGrid .invitePopUp {
+  position: fixed;
+  z-index: 1;
+  background-color: hotpink;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 150px;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+main .videoGrid .invitePopUp.activePopup {
+  display: block;
+  display: flex;
+}
+
+main .videoGrid .invitePopUp input {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px 4px 0 0;
+}
+
+main .videoGrid .invitePopUp button {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0 0 4px 4px;
+}
 main .chatGrid {
   height: 30vh;
   background-color: bisque;
@@ -91,7 +126,5 @@ main .chatGrid {
 
   main .videoGrid aside {
     bottom: 4rem;
-    left: 4rem;
-    right: 4rem;
   }
 }

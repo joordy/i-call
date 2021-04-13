@@ -2,7 +2,7 @@
 
 ## **Concepts**
 
-|                                              Sketch 1, game with multiple pokemon                                               |                                                      Location based rooms (map)                                                      |                                                      Trending Twitter hashtags                                                      |
+|                                                    Game with multiple rooms                                                     |                                                      Location based rooms (map)                                                      |                                                      Trending Twitter hashtags                                                      |
 | :-----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: |
 | ![Location based volume](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png) | ![Location based rooms (map)](https://user-images.githubusercontent.com/48051912/114401928-a54a0c00-9ba3-11eb-9542-4e321f737c30.png) | ![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/114401919-a418df00-9ba3-11eb-96a4-f957322c5011.png) |
 
@@ -128,6 +128,7 @@ lorem
 ## 🔍 **Sources**
 
 - https://peerjs.com/
+- https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/getVideoTracks
 
 ---
 
