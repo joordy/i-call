@@ -5,7 +5,7 @@ const app = express()
 const path = require('path')
 const router = require('./router/routes')
 const hbs = require('./utils/hbsSetup')
-const port = process.env.PORT || 3030
+const port = process.env.PORT || 1313
 require('dotenv').config()
 
 // Sockets

@@ -128,6 +128,7 @@ lorem
 ## 🔍 **Sources**
 
 - https://peerjs.com/
+- https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/getVideoTracks
 
 ---
 
