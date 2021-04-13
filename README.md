@@ -2,11 +2,7 @@
 
 ## **Concepts**
 
-|                                                    Game with multiple rooms                                                     |                                                      Location based rooms (map)                                                      |                                                      Trending Twitter hashtags                                                      |
-| :-----------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: |
-| ![Location based volume](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png) | ![Location based rooms (map)](https://user-images.githubusercontent.com/48051912/114401928-a54a0c00-9ba3-11eb-9542-4e321f737c30.png) | ![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/114401919-a418df00-9ba3-11eb-96a4-f957322c5011.png) |
-
-<!-- <details style="margin: 1em 0;">
+<details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Location based volume</summary>
 
 ![Location based volume](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png)
@@ -25,7 +21,14 @@
 
 ![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/114401919-a418df00-9ba3-11eb-96a4-f957322c5011.png)
 
-</details> -->
+</details>
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Videochat with Cat Facts</summary>
+
+Image Coming Soon
+
+</details>
 
 <!-- Possible ideas:
 
