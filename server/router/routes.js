@@ -1,5 +1,6 @@
 // Import packages
 const express = require('express')
+const isUserLoggedIn = require('../utils/isLoggedIn')
 const router = express.Router()
 
 // Import routes
@@ -11,7 +12,7 @@ const rooms = require('./../renders/rooms')
 
 // Setting get routes
 router.get('/', home)
-router.get('/rooms/:roomID', rooms)
+router.get('/rooms/:roomID', isUserLoggedIn, rooms)
 // router.get('/createroom', createroom)
 
 // router.get('*', notFound)
