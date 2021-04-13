@@ -3,6 +3,8 @@ const express = require('express')
 const http = require('http')
 const app = express()
 const path = require('path')
+const session = require('express-session')
+const sharedSessions = require('express-socket.io-session')
 const router = require('./router/routes')
 const hbs = require('./utils/hbsSetup')
 const port = process.env.PORT || 3131
@@ -12,10 +14,19 @@ require('dotenv').config()
 // const initSocketIO = require('./utils/socket')
 const server = http.createServer(app)
 const io = require('socket.io')(server)
+const formatMessage = require('./utils/formatMessage')
 
 // PeerJS
 const { ExpressPeerServer } = require('peer')
 const peerServer = ExpressPeerServer(server, { debug: true })
+const newSession = session({
+  secret: 'iCallSession123',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    secure: 'auto',
+  },
+})
 
 app
   .enable('trust proxy')
@@ -29,6 +40,15 @@ app
   )
   .use(express.json())
   .use(express.static('public'))
+  .use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      cookie: { maxAge: 600000 },
+      resave: true,
+      saveUninitialized: true,
+      secure: true,
+    })
+  )
   .use(router)
   .use('/peerjs', peerServer)
   .use((request, response, next) => {
@@ -39,13 +59,23 @@ app
   })
 
 io.on('connection', (socket) => {
-  socket.on('join-room', (room_ID, user_ID) => {
-    socket.join(room_ID)
-    socket.broadcast.to(room_ID).emit('user-connected', user_ID)
+  io.use(sharedSessions(newSession))
+
+  socket.on('join-room', (obj) => {
+    console.log(obj)
+    socket.join(obj.room_ID)
+    socket.broadcast.to(obj.room_ID).emit('user-connected', obj.peer_ID)
+  })
+  socket.on('chat message', (msg) => {
+    console.log('message: ' + msg)
+  })
+  socket.on('message', (message) => {
+    io.emit('createMessage', message)
+  })
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
   })
 })
-
-// initSocketIO(server)
 
 // Launch application
 server.listen(port, () => {

@@ -8,4 +8,4 @@ const notFound = async (req, res) => {
 }
 
 // Export route
-module.exports = { notFound }
+module.exports = notFound

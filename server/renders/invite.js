@@ -1,17 +1,13 @@
-const fetcher = require('../utils/fetch')
-
 // Home route function
-const rooms = async (req, res) => {
+const invite = async (req, res) => {
   try {
-    const response = await fetcher('https://cat-fact.herokuapp.com/facts')
-    const room = req.params.roomID
+    console.log(req.body)
     req.session.userName = req.body.userName
     req.session.save()
-
     console.log(req.session)
 
     res.render('rooms', {
-      room: room,
+      room: req.body.roomID,
       userName: req.session.userName,
       pageInf: {
         styles: 'rooms.css',
@@ -26,4 +22,4 @@ const rooms = async (req, res) => {
 }
 
 // Export route
-module.exports = rooms
+module.exports = invite
