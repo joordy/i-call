@@ -60,13 +60,16 @@ navigator.mediaDevices
       const chats = document.querySelector('.chatMessages')
       const listItem = document.createElement('li')
       const textItem = document.createElement('p')
+      const timeItem = document.createElement('p')
       const sender = document.createElement('p')
       const senderText = document.createTextNode(message.user)
       const textItemText = document.createTextNode(message.msg)
+      sender.setAttribute('class', 'sender')
       sender.appendChild(senderText)
       textItem.appendChild(textItemText)
       listItem.appendChild(sender)
       listItem.appendChild(textItem)
+      listItem.appendChild(timeItem)
       chats.appendChild(listItem)
       console.log(message)
       // $('ul').append(`<li class="message"><b>user</b><br/>${message}</li>`);
@@ -140,10 +143,10 @@ function videoEvents() {
     muteMyself.classList.toggle('activeMenuItem')
     if (!userAudioEnabled) {
       myVideoStream.getAudioTracks()[0].enabled = true
-      muteMyself.textContent = 'Mute'
+      // muteMyself.textContent = 'Mute'
     } else {
       myVideoStream.getAudioTracks()[0].enabled = false
-      muteMyself.textContent = 'Unmute'
+      // muteMyself.textContent = 'Unmute'
     }
   })
 
@@ -154,10 +157,10 @@ function videoEvents() {
 
     if (!userVidEnabled) {
       myVideoStream.getVideoTracks()[0].enabled = true
-      stopVideo.textContent = 'Stop Video'
+      // stopVideo.innerHTML = 'Stop Video'
     } else {
       myVideoStream.getVideoTracks()[0].enabled = false
-      stopVideo.textContent = 'Play Video'
+      // stopVideo.textContent = 'Play Video'
     }
   })
 
