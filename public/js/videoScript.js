@@ -12,16 +12,19 @@ console.log(userName)
 userVideo.muted = true
 let myVideoStream
 
-let browserUserMedia =
+let usersMedia =
   navigator.getUserMedia ||
   navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia
+
 let peerConnection = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  // port: '3131', // Development Port
-  port: '443', // Heroku Port
+  port: '9000', // Development Port
+  // port: '443', // Heroku Port
 })
+
+console.log(peerConnection)
 
 navigator.mediaDevices
   .getUserMedia({
@@ -33,9 +36,11 @@ navigator.mediaDevices
     addNewUserVideoStream(userVideo, stream)
 
     peerConnection.on('call', (answerCall) => {
-      const video = document.createElement('video')
       answerCall.answer(stream)
-      answerCall.on('stream', (newUserStream) => {
+
+      const video = document.createElement('video')
+
+      ranswerCall.on('stream', (newUserStream) => {
         addNewUserVideoStream(video, newUserStream)
       })
     })
@@ -46,7 +51,6 @@ navigator.mediaDevices
 
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault()
-      // console.log('test')
       if (chatMsg.value != '') {
         socket.emit('message', {
           msg: chatMsg.value,
@@ -72,8 +76,6 @@ navigator.mediaDevices
       listItem.appendChild(timeItem)
       chats.appendChild(listItem)
       console.log(message)
-      // $('ul').append(`<li class="message"><b>user</b><br/>${message}</li>`);
-      // scrollToBottom();
     })
 
     // socket.on('chat message', function (msg) {
@@ -86,11 +88,11 @@ navigator.mediaDevices
   })
 
 peerConnection.on('call', (answerCall) => {
-  browserUserMedia(
+  usersMedia(
     { video: true, audio: true },
     function (stream) {
-      const video = document.createElement('video')
       answerCall.answer(stream)
+      const video = document.createElement('video')
       answerCall.on('stream', function (remoteStream) {
         addNewUserVideoStream(video, remoteStream)
       })

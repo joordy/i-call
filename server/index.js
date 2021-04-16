@@ -7,7 +7,7 @@ const session = require('express-session')
 const sharedSessions = require('express-socket.io-session')
 const router = require('./router/routes')
 const hbs = require('./utils/hbsSetup')
-const port = process.env.PORT || 3131
+const port = process.env.PORT || 9000
 require('dotenv').config()
 
 // Sockets

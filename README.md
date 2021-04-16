@@ -45,15 +45,21 @@ Image Coming Soon
 
 ---
 
-## **Data flow Diagram**
+## **Data Flow Diagram**
 
-https://asciiflow.com/#/
+![Data flow Diagram](https://user-images.githubusercontent.com/48051912/114943487-5b348500-9e46-11eb-886e-7b3e709e4975.png)
 
-- Teken alle grote componenten (client, server, API)
-- Schrijf onder elk component wat er in het datamodel aanwezig is
-- Teken de lijnen/pijlen voor data die tussen componenten gedeeld worden
-- Voeg de methode voor verkrijgen en versturen van data (pub/sub, http request/response, socket request/response, authorization, Oauth)
-- Voeg deze data-flow toe aan je readme
+# https://asciiflow.com/#/
+
+# - Teken alle grote componenten (client, server, API)
+
+# - Schrijf onder elk component wat er in het datamodel aanwezig is
+
+# - Teken de lijnen/pijlen voor data die tussen componenten gedeeld worden
+
+# - Voeg de methode voor verkrijgen en versturen van data (pub/sub, http request/response, socket request/response, authorization, Oauth)
+
+# - Voeg deze data-flow toe aan je readme
 
 ## 🔦 **Description**
 
