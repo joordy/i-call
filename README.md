@@ -49,7 +49,7 @@ Image Coming Soon
 
 ![Data flow Diagram](https://user-images.githubusercontent.com/48051912/114943487-5b348500-9e46-11eb-886e-7b3e709e4975.png)
 
-# https://asciiflow.com/#/
+<!-- # https://asciiflow.com/#/
 
 # - Teken alle grote componenten (client, server, API)
 
@@ -59,7 +59,7 @@ Image Coming Soon
 
 # - Voeg de methode voor verkrijgen en versturen van data (pub/sub, http request/response, socket request/response, authorization, Oauth)
 
-# - Voeg deze data-flow toe aan je readme
+# - Voeg deze data-flow toe aan je readme -->
 
 ## 🔦 **Description**
 
@@ -72,6 +72,38 @@ lorem
 You can visit the [iCall application](https://i-call.herokuapp.com/) here
 
 ---
+
+## 😺 **API**
+
+### **Fetch**
+
+```js
+const fetcher = async (endpoint) => {
+  const data = await fetch(endpoint)
+  const response = await data.json()
+  return response
+}
+
+const response = fetcher('https://cat-fact.herokuapp.com/facts')
+```
+
+### **Response**
+
+```js
+  {
+    status: { verified: true, sentCount: 1 },
+    type: 'cat',
+    deleted: false,
+    _id: '58e007cc0aac31001185ecf5',
+    user: '58e007480aac31001185ecef',
+    text: 'Cats are the most popular pet in the United States: There are 88 million pet cats and 74 million dogs.',
+    __v: 0,
+    source: 'user',
+    updatedAt: '2020-08-23T20:20:01.611Z',
+    createdAt: '2018-03-01T21:20:02.713Z',
+    used: false
+  }
+```
 
 ## 🚀 **Features**
 
