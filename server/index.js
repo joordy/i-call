@@ -29,6 +29,8 @@ const newSession = session({
   },
 })
 
+const fetcher = require('./utils/fetch')
+
 app
   .enable('trust proxy')
   .engine('.hbs', hbs.engine)
@@ -70,8 +72,14 @@ io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {
     console.log('message: ' + msg)
   })
-  socket.on('message', (message) => {
+  socket.on('message', async (message) => {
+    console.log(message)
     io.emit('createMessage', createMessage(message))
+
+    if (message.message.includes('catfact')) {
+      const catFact = await getRandomCatFact()
+      socket.emit('createMessage', createMessage(catFact))
+    }
   })
   socket.on('disconnect', () => {
     console.log('user disconnected')
@@ -83,6 +91,16 @@ function createMessage(text) {
     text,
     time: moment().format('h:mm a'),
   }
+}
+
+async function getRandomCatFact() {
+  const response = await fetcher('https://cat-fact.herokuapp.com/facts')
+  const num = Math.floor(Math.random() * 6) + 1
+  const catFact = {
+    message: `${response[num].text}`,
+    user: 'CatFacts',
+  }
+  return catFact
 }
 
 // Launch application

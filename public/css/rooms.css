@@ -25,6 +25,7 @@ main {
 main section {
   transition: 0.2s ease;
 }
+
 main .videoGrid {
   position: relative;
   padding: 1rem;
@@ -123,6 +124,7 @@ main .videoGrid .invitePopUp button {
   border: none;
   border-radius: 0 0 4px 4px;
 }
+
 main .chatGrid {
   transform: translateY(30vh);
   height: 30vh;
@@ -174,6 +176,7 @@ main .chatGrid .chatContainer ul li p:nth-of-type(3) {
   font-weight: 300;
   margin-right: 0.5rem;
 }
+
 main .chatGrid .chatContainer ul li p:nth-of-type(3):before {
   content: '— ';
 }
@@ -192,6 +195,7 @@ main .chatGrid .chatForm {
 main .chatGrid .chatForm form {
   display: flex;
 }
+
 main .chatGrid .chatForm form input[type='text'] {
   font-size: 16px;
   padding: 5px;
