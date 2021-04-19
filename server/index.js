@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
   })
   socket.on('message', async (message) => {
     console.log(message)
-    io.emit('createMessage', createMessage(message))
+    io.to(message.room_ID).emit('createMessage', createMessage(message))
 
     if (message.message.includes('catfact')) {
       const catFact = await getRandomCatFact()
@@ -95,7 +95,8 @@ function createMessage(text) {
 
 async function getRandomCatFact() {
   const response = await fetcher('https://cat-fact.herokuapp.com/facts')
-  const num = Math.floor(Math.random() * 6) + 1
+  const num = Math.floor(Math.random() * 5) + 1
+  console.log(num)
   const catFact = {
     message: `${response[num].text}`,
     user: 'CatFacts',
