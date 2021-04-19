@@ -40,6 +40,7 @@ navigator.mediaDevices
       })
     })
 
+    // When new user will connect, it fires the NewUserConnected function on line 124
     socket.on('user-connected', (userID) => {
       newUserConnected(userID, stream)
     })
@@ -49,6 +50,8 @@ navigator.mediaDevices
     //   // newUserConnected(userID, stream)
     // })
 
+    // Prevents form for submitting, and creates a object which will be sended to
+    // the server. The server will send it back to the client.
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault()
       if (chatMsg.value != '') {
@@ -61,6 +64,9 @@ navigator.mediaDevices
       }
     })
 
+    // The received information of the server will be added to the 'Chat Messages' box,
+    // the window will be automatically scrolled down, and the 'CreateChatElement' and 'CheckLastMessage'
+    // will style the elements in HTML.
     socket.on('createMessage', (message) => {
       console.log(
         `${message.text.user}, ${message.text.message} & ${message.time}`
@@ -74,7 +80,7 @@ navigator.mediaDevices
       if (message.text.user === myUserName) {
         chatElem.setAttribute('class', 'ownMessage')
       }
-      checklastMessage(chatList)
+      checkLastMessage(chatList)
     })
 
     socket.on('disconnected', (roomID, userID) => {
@@ -84,6 +90,7 @@ navigator.mediaDevices
     videoEvents()
   })
 
+// Call connection of PeerJS, answers the call by opening the video src of the user.
 peerConnection.on('call', (answerCall) => {
   browserUserMedia(
     { video: true, audio: true },
@@ -103,6 +110,7 @@ peerConnection.on('call', (answerCall) => {
   )
 })
 
+// Opens connection of PeerJS, and sends roomID, peerID and userName to server.
 peerConnection.on('open', (id) => {
   console.log('roomID', roomID)
   socket.emit('join-room', {
@@ -112,6 +120,7 @@ peerConnection.on('open', (id) => {
   })
 })
 
+// Function which adds the video connection using 'call' from PeerJS, adds video of new user to the app.
 function newUserConnected(userID, streams) {
   console.log('new user connected')
   const callUser = peerConnection.call(userID, streams)
@@ -128,6 +137,7 @@ function newUserConnected(userID, streams) {
   // peers[userID] = callUser
 }
 
+// Add stream to video source
 function addNewUserVideoStream(videoElement, stream) {
   videoElement.srcObject = stream
   videoElement.addEventListener('loadedmetadata', () => {
@@ -229,7 +239,7 @@ function videoEvents() {
 
 // If there are two messages in a row from the same user, this code
 // will remove the name and time from the previous message.
-function checklastMessage(chatList) {
+function checkLastMessage(chatList) {
   const chatArr = chatList.childNodes
   let lastElem = chatArr[chatArr.length - 1]
   let secLastElem = chatArr[chatArr.length - 2]
