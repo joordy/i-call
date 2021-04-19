@@ -18,8 +18,8 @@ let browserUserMedia =
 let peerConnection = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3232', // Development Port
-  // port: '443', // Heroku Port
+  // port: '3232', // Development Port
+  port: '443', // Heroku Port
 })
 
 navigator.mediaDevices
@@ -72,8 +72,8 @@ navigator.mediaDevices
         `${message.text.user}, ${message.text.message} & ${message.time}`
       )
 
-      const chatList = document.querySelector('.chatMessages')
       const chatElem = createChatElement(message)
+      const chatList = document.querySelector('.chatMessages')
       chatList.appendChild(chatElem)
       chatList.scrollTop = chatList.scrollHeight
 
