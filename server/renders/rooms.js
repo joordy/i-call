@@ -4,12 +4,12 @@ const fetcher = require('../utils/fetch')
 const rooms = async (req, res) => {
   try {
     const response = await fetcher('https://cat-fact.herokuapp.com/facts')
-    console.log(response)
-    const room = req.params.roomID
+    const room = req.body.roomID
+    console.log('req.body from rooms.js', req.body)
     req.session.userName = req.body.userName
     req.session.save()
-
-    console.log(req.session)
+    // console.log(response)
+    // console.log(req.session)
 
     res.render('rooms', {
       room: room,
@@ -17,7 +17,6 @@ const rooms = async (req, res) => {
       pageInf: {
         styles: 'rooms.css',
         script: 'videoScript.js',
-        sockets: '/socket.io/socket.io.js',
         title: 'Rooms',
       },
     })

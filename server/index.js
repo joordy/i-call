@@ -4,10 +4,11 @@ const http = require('http')
 const app = express()
 const path = require('path')
 const session = require('express-session')
+const moment = require('moment')
 const sharedSessions = require('express-socket.io-session')
 const router = require('./router/routes')
 const hbs = require('./utils/hbsSetup')
-const port = process.env.PORT || 9000
+const port = process.env.PORT || 3232
 require('dotenv').config()
 
 // Sockets
@@ -60,22 +61,29 @@ app
 
 io.on('connection', (socket) => {
   io.use(sharedSessions(newSession))
-
   socket.on('join-room', (obj) => {
     console.log(obj)
     socket.join(obj.room_ID)
     socket.broadcast.to(obj.room_ID).emit('user-connected', obj.peer_ID)
+    console.log('user connected')
   })
   socket.on('chat message', (msg) => {
     console.log('message: ' + msg)
   })
   socket.on('message', (message) => {
-    io.emit('createMessage', message)
+    io.emit('createMessage', createMessage(message))
   })
   socket.on('disconnect', () => {
     console.log('user disconnected')
   })
 })
+
+function createMessage(text) {
+  return {
+    text,
+    time: moment().format('h:mm a'),
+  }
+}
 
 // Launch application
 server.listen(port, () => {

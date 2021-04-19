@@ -4,15 +4,15 @@
   </header>
 
   <main>
-    <a href="/createroom">Create room</a>
+    {{!-- <a href="/createroom">Create room</a> --}}
 
     <section>
       <h2>Create room</h2>
       <form action="/rooms/{{roomIDS}}" method="POST">
         <fieldset>    
-          <input type="hidden" name="roomID" value="{{roomIDS}}">
+          <input type="hidden" name="roomID" value="{{roomIDS}}" >
           <label for="userName">Username: </label>
-          <input type="text" name="userName" id="userName">
+          <input type="text" name="userName" id="userName" placeholder="Enter username">
           <input type="submit" value="enter">
         </fieldset>
       </form>
@@ -23,9 +23,9 @@
       <form action="/rooms/invite" method="POST">
         <fieldset>
           <label for="roomID">ID: </label>
-          <input type="text" name="roomID" id="roomID" >
+          <input type="text" name="roomID" id="roomID"  placeholder="Enter room ID">
           <label for="userName">Username: </label>
-          <input type="text" name="userName" id="userName">
+          <input type="text" name="userName" id="userName" placeholder="Enter username">
           <input type="submit" value="Enter room">
         </fieldset>
       </form>
