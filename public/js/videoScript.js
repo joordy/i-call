@@ -1,6 +1,5 @@
 const socket = io('/')
-const path = window.location.pathname
-const roomID = path.replace('/rooms/', '')
+const roomID = document.querySelector('#roomID').textContent
 const videoGridContainer = document.querySelector('.videoGrid')
 const userVideo = document.createElement('video')
 const chatForm = document.querySelector('#form')
@@ -12,19 +11,16 @@ console.log(userName)
 userVideo.muted = true
 let myVideoStream
 
-let usersMedia =
+let browserUserMedia =
   navigator.getUserMedia ||
   navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia
-
 let peerConnection = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '9000', // Development Port
+  port: '3232', // Development Port
   // port: '443', // Heroku Port
 })
-
-console.log(peerConnection)
 
 navigator.mediaDevices
   .getUserMedia({
@@ -36,11 +32,9 @@ navigator.mediaDevices
     addNewUserVideoStream(userVideo, stream)
 
     peerConnection.on('call', (answerCall) => {
-      answerCall.answer(stream)
-
       const video = document.createElement('video')
-
-      ranswerCall.on('stream', (newUserStream) => {
+      answerCall.answer(stream)
+      answerCall.on('stream', (newUserStream) => {
         addNewUserVideoStream(video, newUserStream)
       })
     })
@@ -53,7 +47,7 @@ navigator.mediaDevices
       e.preventDefault()
       if (chatMsg.value != '') {
         socket.emit('message', {
-          msg: chatMsg.value,
+          message: chatMsg.value,
           user: userName,
         })
         chatMsg.value = ''
@@ -61,21 +55,14 @@ navigator.mediaDevices
     })
 
     socket.on('createMessage', (message) => {
-      const chats = document.querySelector('.chatMessages')
-      const listItem = document.createElement('li')
-      const textItem = document.createElement('p')
-      const timeItem = document.createElement('p')
-      const sender = document.createElement('p')
-      const senderText = document.createTextNode(message.user)
-      const textItemText = document.createTextNode(message.msg)
-      sender.setAttribute('class', 'sender')
-      sender.appendChild(senderText)
-      textItem.appendChild(textItemText)
-      listItem.appendChild(sender)
-      listItem.appendChild(textItem)
-      listItem.appendChild(timeItem)
-      chats.appendChild(listItem)
-      console.log(message)
+      console.log(
+        `this is your message: ${message.text.user}, ${message.text.message} and ${message.time}`
+      )
+      const chatList = document.querySelector('.chatMessages')
+      const chatElem = createChatElement(message)
+
+      chatList.appendChild(chatElem)
+      chatList.scrollTop = chatList.scrollHeight
     })
 
     // socket.on('chat message', function (msg) {
@@ -87,12 +74,33 @@ navigator.mediaDevices
     videoEvents()
   })
 
+function createChatElement(message) {
+  const listElem = document.createElement('li')
+  const sendElem = document.createElement('p')
+  const timeElem = document.createElement('p')
+  const msgElem = document.createElement('p')
+
+  const sender = document.createTextNode(message.text.user)
+  const time = document.createTextNode(message.time)
+  const msg = document.createTextNode(message.text.message)
+
+  sendElem.appendChild(sender)
+  timeElem.appendChild(time)
+  msgElem.appendChild(msg)
+
+  listElem.appendChild(msgElem)
+  listElem.appendChild(sendElem)
+  listElem.appendChild(timeElem)
+
+  return listElem
+}
+
 peerConnection.on('call', (answerCall) => {
-  usersMedia(
+  browserUserMedia(
     { video: true, audio: true },
     function (stream) {
-      answerCall.answer(stream)
       const video = document.createElement('video')
+      answerCall.answer(stream)
       answerCall.on('stream', function (remoteStream) {
         addNewUserVideoStream(video, remoteStream)
       })
@@ -104,6 +112,7 @@ peerConnection.on('call', (answerCall) => {
 })
 
 peerConnection.on('open', (id) => {
+  console.log('roomID', roomID)
   socket.emit('join-room', { room_ID: roomID, peer_ID: id, userName: userName })
 })
 

@@ -1,10 +1,10 @@
 // Home route function
 const invite = async (req, res) => {
   try {
-    console.log(req.body)
+    console.log('invite.js')
     req.session.userName = req.body.userName
     req.session.save()
-    console.log(req.session)
+    console.log('req.body from invite.js', req.body)
 
     res.render('rooms', {
       room: req.body.roomID,

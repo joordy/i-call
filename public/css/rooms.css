@@ -19,32 +19,40 @@ main {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
 }
 
 main section {
   transition: 0.2s ease;
 }
 main .videoGrid {
-  /* background-color: aquamarine; */
   position: relative;
-  height: calc(70vh - 32px - 18px);
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   transition: 0.2s ease;
+  height: 100vh;
+}
+
+main .videoGrid.active {
+  height: 70vh;
+}
+
+main .chatGrid.active {
+  transform: translateY(0);
 }
 
 main video {
   width: clamp(300px, 35%, 600px);
   height: clamp(250px, 40vh, 250px);
   object-fit: cover;
+  margin: 0.5rem;
   border-radius: 8px;
 }
 
 main .videoGrid aside {
-  background-color: #1c1d26;
   color: #eeeeef;
   border-radius: 8px;
   position: absolute;
@@ -62,10 +70,16 @@ main .videoGrid aside ul {
 }
 
 main .videoGrid aside ul li {
-  border-radius: 8px;
+  order-radius: 8px;
   list-style-type: none;
   padding: 1rem;
   margin: 0 0.5rem;
+  background-color: #1c1d26;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  display: grid;
+  place-items: center;
 }
 
 main .videoGrid aside ul li:nth-child(3) {
@@ -110,86 +124,100 @@ main .videoGrid .invitePopUp button {
   border-radius: 0 0 4px 4px;
 }
 main .chatGrid {
+  transform: translateY(30vh);
   height: 30vh;
-  background-color: bisque;
+  background-color: #17202c;
   transition: 0.2s ease;
   position: relative;
 }
 
-main .chatGrid article:first-of-type {
-  height: calc(100% - 40px);
+main .chatGrid .chatContainer {
+  height: calc(100% - 56px);
   width: 100%;
 }
 
-main .chatGrid article:first-of-type ul {
+main .chatGrid .chatContainer ul {
   width: 100%;
   height: 100%;
   padding: 1rem;
   list-style-position: inside;
   color: black;
+  overflow-y: scroll;
 }
 
-main .chatGrid article:first-of-type ul li {
-  list-style-type: none;
-  padding: 0.5rem;
-  border: 1px solid #43acd7;
-  border-radius: 8px;
-  background-color: #43acd7;
-  color: white;
+main .chatGrid .chatContainer ul li {
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  color: white;
+  list-style-type: none;
+  border-radius: 8px;
 }
 
-main .chatGrid article:first-of-type ul li::after {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 24px;
-  height: 24px;
-  background-color: #43acd7;
-  transform: rotate(45deg) translateY(-57%);
-  z-index: -1;
-  left: -1rem;
-  top: 50%;
+main .chatGrid .chatContainer ul li:last-of-type {
+  margin-bottom: 1rem;
 }
 
-main .chatGrid article:first-of-type ul li p:first-of-type {
-  padding-bottom: 0.5rem;
-  font-weight: 700;
+main .chatGrid .chatContainer ul li p:nth-of-type(1) {
+  padding: 0.75rem;
+  width: 100%;
+  background-color: #585f67;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
 }
 
-main .chatGrid article:last-of-type {
+main .chatGrid .chatContainer ul li p:nth-of-type(2),
+main .chatGrid .chatContainer ul li p:nth-of-type(3) {
+  font-size: 14px;
+  font-weight: 300;
+  margin-right: 0.5rem;
+}
+main .chatGrid .chatContainer ul li p:nth-of-type(3):before {
+  content: '— ';
+}
+
+/** Chat container **/
+main .chatGrid .chatForm {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  margin: 0.5rem;
+  width: calc(100% - 1rem);
+  border: 0.5px solid white;
+  border-radius: 4px;
+  padding: 0.2rem;
 }
 
-main .chatGrid article:last-of-type form {
+main .chatGrid .chatForm form {
   display: flex;
 }
-main .chatGrid article:last-of-type form input[type='text'] {
+main .chatGrid .chatForm form input[type='text'] {
   font-size: 16px;
   padding: 5px;
   height: 40px;
   flex: 1;
+  background-color: transparent;
+  color: white;
+  border: none;
 }
 
-main .chatGrid article:last-of-type form button {
+main .chatGrid .chatForm form button {
   padding: 5px 15px;
-  background: white;
-  color: red;
+  background: transparent;
+  color: white;
   border: 0;
   font-size: 17px;
 }
 
 /** States **/
 .activeMenuItem {
-  background-color: rgb(47 47 57 / 70%);
+  background-color: rgba(47, 47, 57, 0.7);
 }
 
 @media screen and (min-width: 800px) {
   main {
     flex-direction: row;
-    overflow-x: hidden;
   }
   main video {
     width: clamp(350px, 35%, 600px);
