@@ -4,18 +4,16 @@ const http = require('http')
 const app = express()
 const path = require('path')
 const session = require('express-session')
-const moment = require('moment')
-const sharedSessions = require('express-socket.io-session')
+// const moment = require('moment')
+// const sharedSessions = require('express-socket.io-session')
 const router = require('./router/routes')
 const hbs = require('./utils/hbsSetup')
 const port = process.env.PORT || 3232
 require('dotenv').config()
 
 // Sockets
-// const initSocketIO = require('./utils/socket')
+const initSocketIO = require('./utils/socket')
 const server = http.createServer(app)
-const io = require('socket.io')(server)
-const formatMessage = require('./utils/formatMessage')
 
 // PeerJS
 const { ExpressPeerServer } = require('peer')
@@ -28,8 +26,6 @@ const newSession = session({
     secure: 'auto',
   },
 })
-
-const fetcher = require('./utils/fetch')
 
 app
   .enable('trust proxy')
@@ -61,48 +57,8 @@ app
     next()
   })
 
-io.on('connection', (socket) => {
-  io.use(sharedSessions(newSession))
-  socket.on('join-room', (obj) => {
-    console.log(obj)
-    socket.join(obj.room_ID)
-    socket.broadcast.to(obj.room_ID).emit('user-connected', obj.peer_ID)
-    console.log('user connected')
-  })
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg)
-  })
-  socket.on('message', async (message) => {
-    console.log(message)
-    io.to(message.room_ID).emit('createMessage', createMessage(message))
-
-    if (message.message.includes('catfact')) {
-      const catFact = await getRandomCatFact()
-      socket.emit('createMessage', createMessage(catFact))
-    }
-  })
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
-  })
-})
-
-function createMessage(text) {
-  return {
-    text,
-    time: moment().format('h:mm a'),
-  }
-}
-
-async function getRandomCatFact() {
-  const response = await fetcher('https://cat-fact.herokuapp.com/facts')
-  const num = Math.floor(Math.random() * 5) + 1
-  console.log(num)
-  const catFact = {
-    message: `${response[num].text}`,
-    user: 'CatFacts',
-  }
-  return catFact
-}
+// Use Socket.io function in application
+initSocketIO(server, newSession)
 
 // Launch application
 server.listen(port, () => {
