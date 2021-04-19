@@ -18,8 +18,8 @@ let browserUserMedia =
 let peerConnection = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3232', // Development Port
-  // port: '443', // Heroku Port
+  // port: '3232', // Development Port
+  port: '443', // Heroku Port
 })
 
 navigator.mediaDevices
@@ -116,12 +116,12 @@ peerConnection.on('open', (id) => {
   socket.emit('join-room', { room_ID: roomID, peer_ID: id, userName: userName })
 })
 
-console.log(socket)
+// console.log(socket)
 
-socket.on('message', (message) => {
-  console.log(message)
-  // outputMessage(message)
-})
+// socket.on('message', (message) => {
+//   console.log(message)
+//   // outputMessage(message)
+// })
 
 function newUserConnected(userID, streams) {
   console.log('new user connected')
