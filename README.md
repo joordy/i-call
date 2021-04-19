@@ -115,11 +115,26 @@ lorem
 
 lorem
 
+- [peerJS](https://peerjs.com/)
+
 ---
 
 ## 📦 **NPM Packages**
 
-- [peerJS](https://peerjs.com/)
+- [DotEnv](https://www.npmjs.com/package/dotenv)
+- [Express](https://www.npmjs.com/package/express)
+- [Express-Handlebars](https://www.npmjs.com/package/express-handlebars)
+- [Express-Sessions](https://www.npmjs.com/package/express-sessions)
+- [Express Socket.io Session](https://www.npmjs.com/package/express-socket.io-session)
+- [Moment](https://www.npmjs.com/package/moment)
+- [Node-fetch](https://www.npmjs.com/package/node-fetch)
+- [Peer](https://www.npmjs.com/package/peer)
+- [Socket.io](https://www.npmjs.com/package/socket.io)
+- [Uuid](https://www.npmjs.com/package/uuid)
+
+- [Nodemon](https://www.npmjs.com/package/nodemon)
+- [Eslint](https://www.npmjs.com/package/eslint)
+- [Prettier](https://www.npmjs.com/package/prettier)
 
 ---
 
