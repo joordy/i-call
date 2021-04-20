@@ -1,51 +1,54 @@
-# Real-Time Web @cmda-minor-web · 2020/21
+# 📹 **iCall video platform**
 
-## **Concepts**
+## ✏️ **Description**
+
+iCall is a multi-user video platform where you can connect with your friends, based on a WebRTC connection. The app makes it possible to Video-call, chat, and send Cat Facts to the room. The app will be made with NodeJS, Express, Express-Handlebars, Socket.io and PeerJS. Check out my [NPM Packages](#-npm-packages) to see which other packages I've used.
+
+---
+
+## 🚀 **Live view:**
+
+You can visit the project [iCall application here](https://i-call.herokuapp.com/)
+
+---
+
+## ✏️ **Concepts**
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Location based volume</summary>
 
-![Location based volume](https://user-images.githubusercontent.com/48051912/114401933-a5e2a280-9ba3-11eb-9f24-d344fb150063.png)
+![Location based volume](https://user-images.githubusercontent.com/48051912/115362287-a8f01b00-a1c1-11eb-971c-141666ecdeb7.png)
 
 </details>
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Location based rooms (map)</summary>
 
-![Location based rooms (map)](https://user-images.githubusercontent.com/48051912/114401928-a54a0c00-9ba3-11eb-9542-4e321f737c30.png)
+![Location based rooms (map)](https://user-images.githubusercontent.com/48051912/115362289-a988b180-a1c1-11eb-8ee9-a4a0b61ce4bd.png)
 
 </details>
 
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Trending Twitter hashtags</summary>
 
-![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/114401919-a418df00-9ba3-11eb-96a4-f957322c5011.png)
+![Trending Twitter hashtags](https://user-images.githubusercontent.com/48051912/115362285-a8578480-a1c1-11eb-890b-1855fb7fdd0b.png)
 
 </details>
 
 <details style="margin: 1em 0;">
-  <summary style="margin: 1em 0;">Videochat with Cat Facts</summary>
+  <summary style="margin: 1em 0;">Video platform with Cat Facts</summary>
 
-Image Coming Soon
+![Videochat with Cat Facts](https://user-images.githubusercontent.com/48051912/115362276-a68dc100-a1c1-11eb-9706-419eef2efd32.png)
 
 </details>
 
-<!-- Possible ideas:
+#### **Chosen Concept**
 
-- Real time live coder (codepen?)
-- Zoom/Skype clone
-- Realtime editor
-- Realtime order system (food orderning)
-  - https://github.com/codersgyan/realtime-pizza-app-node-express-mongo
-  - https://www.youtube.com/watch?v=Mor2c9RW1Oo&list=PLXQpH_kZIxTVRmXQN9J0Az76te5mAreLV&index=10
-- Game (snake?)
-  - https://www.youtube.com/watch?v=0zTY73khJPM
-  https://www.youtube.com/watch?v=ppcBIHv_ZPs&t=2217s
-- Chat room based on preferences -->
+The concept I chose to develop is the video platform in combination with the CatFacts API.
 
 ---
 
-## **Data Flow Diagram**
+## 💹 **Data Flow Diagram**
 
 ![Data flow Diagram](https://user-images.githubusercontent.com/48051912/114943487-5b348500-9e46-11eb-886e-7b3e709e4975.png)
 
@@ -67,27 +70,37 @@ lorem
 
 ---
 
-## 🌐 **Live link**
-
-You can visit the [iCall application](https://i-call.herokuapp.com/) here
-
----
-
 ## 😺 **API**
 
-### **Fetch**
+The API I will use for this application is the [CatFacts API](https://github.com/alexwohlbruck/cat-facts). I chose this API to keep the application funnier. The response returned by the API is an array with 5 different results. Based on a random index number, a random fact is retrieved.
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Fetch the API data</summary>
 
 ```js
+// Utils/fetch.js
 const fetcher = async (endpoint) => {
   const data = await fetch(endpoint)
   const response = await data.json()
   return response
 }
 
-const response = fetcher('https://cat-fact.herokuapp.com/facts')
+// Utils/socket.js
+async function getRandomCatFact() {
+  const response = await fetcher('https://cat-fact.herokuapp.com/facts')
+  const num = Math.floor(Math.random() * 5) + 1
+  const catFact = {
+    message: `${response[num].text}`,
+    user: 'CatFacts',
+  }
+  return catFact
+}
 ```
 
-### **Response**
+</details>
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Response</summary>
 
 ```js
   {
@@ -104,6 +117,10 @@ const response = fetcher('https://cat-fact.herokuapp.com/facts')
     used: false
   }
 ```
+
+</details>
+
+---
 
 ## 🚀 **Features**
 
@@ -160,26 +177,27 @@ lorem
   ```bash
     npm run build
   ```
+  <!--
 
-### **Deploy the project**
+# ### **Deploy the project**
 
-- **Visit heroku**
+# - **Visit heroku**
 
-  [https://www.heroku.com/](https://www.heroku.com/)
+# [https://www.heroku.com/](https://www.heroku.com/)
 
-- **Create app**
+# - **Create app**
 
-  Dashboard > New > Create new app
+# Dashboard > New > Create new app
 
-- **Connect Github Repository**
+# - **Connect Github Repository**
 
-  Set master branch as deployment branch
+# Set master branch as deployment branch
 
-- **Open application**
+# - **Open application**
 
-  On the custom domain which is how you've called your project
+# On the custom domain which is how you've called your project
 
----
+## -->
 
 ## 🔍 **Sources**
 
