@@ -1,13 +1,13 @@
 <body>
   <header>
-    <h1>I-Call</h1>
+    <h1>iCall</h1>
   </header>
 
   <main>
     {{!-- <a href="/createroom">Create room</a> --}}
 
     <section>
-      <h2>Create room</h2>
+      <h2>Create new room</h2>
       <form action="/rooms/{{roomIDS}}" method="POST">
         <fieldset>    
           <input type="hidden" name="roomID" value="{{roomIDS}}" >
@@ -17,11 +17,11 @@
         </fieldset>
       </form>
 
-      
+
     </section>
 
     <section>
-      <h2>Enter room</h2>
+      <h2>Enter a room</h2>
       <form action="/rooms/invite" method="POST">
         <fieldset>
           <label for="roomID">ID: </label>
@@ -33,4 +33,10 @@
       </form>
     </section>
   </main>
+
+  <footer>
+    <p>    
+      &copy; Jordy Fronik. All Rights Reserved.
+    </p>
+  </footer>
 </body>

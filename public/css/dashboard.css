@@ -1,13 +1,15 @@
-h1 {
+header {
+  padding: 4rem 0;
+}
+
+header h1 {
   text-align: center;
 }
 
 main {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  place-items: center;
-  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 main section {
@@ -15,37 +17,67 @@ main section {
 }
 
 main section h2 {
-  margin-bottom: 2rem;
+  margin: 1rem 0 2rem;
 }
 
 main section form {
-  min-height: 400px;
-  background-color: #202020;
-  padding: 2rem;
-  border-radius: 1rem;
 }
-
 main section form fieldset {
   border: none;
   display: flex;
   flex-direction: column;
 }
 
-input[type='text'],
-input[type='submit'] {
-  padding: 1rem 0.5rem;
-  border-radius: 8px;
-  margin: 0.5rem 0;
+main section form label {
+  margin-bottom: 0.5rem;
 }
 
-input[type='submit'] {
+main section form input {
+  margin-bottom: 1rem;
+  padding: 10px 5px;
+  border-radius: 4px;
+  outline: none;
+  border: 0.5px solid #dddbdb;
+}
+main section form input:focus {
+  background-color: #ffffeb;
+}
+
+main section form input[type='submit'] {
+  background-color: #02b173;
+  color: #eeeeef;
+  border: none;
+  border-radius: 2px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+footer p {
+  color: #ababab;
+  font-size: 14px;
 }
 
 @media (min-width: 600px) {
   main {
-    max-width: 800px;
-    margin: 0 auto;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 3rem;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 5rem;
+    height: calc(100vh - 160px - 46px);
+  }
+  main section {
+    width: 40vw;
+    max-width: 350px;
+  }
+  main section form fieldset {
+    height: 225px;
+    position: relative;
+  }
+  main section form fieldset input[type='submit'] {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
 }

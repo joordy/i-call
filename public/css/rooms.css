@@ -1,5 +1,11 @@
 body {
   position: relative;
+  background-color: #101720;
+  color: #eeeeef;
+}
+
+a {
+  color: #eeeeef;
 }
 
 header {
@@ -157,7 +163,6 @@ main .chatGrid .chatContainer ul li {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 1rem;
   padding: 0.5rem;
   color: white;
   list-style-type: none;
@@ -232,6 +237,8 @@ main .chatGrid .chatForm form button {
 /** Scroll bar **/
 ::-webkit-scrollbar {
   width: 10px;
+  border-radius: 5px;
+  margin: 1px;
 }
 
 /* Track */
