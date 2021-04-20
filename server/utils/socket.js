@@ -6,20 +6,20 @@ const initSocketIO = (server, newSession) => {
   const io = require('socket.io')(server)
 
   io.on('connection', (socket) => {
+    let userObj = {}
     // Use a session to work with the userName as params
     io.use(sharedSessions(newSession))
 
     // Join video-room,
     socket.on('join-room', (obj) => {
+      userObj.roomID = obj.room_ID
+      userObj.peerID = obj.peer_ID
       console.log(obj)
       console.log('user connected')
       socket.join(obj.room_ID)
-      socket.broadcast.to(obj.room_ID).emit('user-connected', obj.peer_ID)
+      io.in(obj.room_ID).emit('user-connected', obj.peer_ID)
+      // socket.broadcast.to(obj.room_ID).emit('user-connected', obj.peer_ID)
     })
-
-    // socket.on('chat message', (msg) => {
-    //   console.log('message: ' + msg)
-    // })
 
     // Sends message to client
     socket.on('message', async (obj) => {
@@ -33,12 +33,10 @@ const initSocketIO = (server, newSession) => {
       }
     })
 
-    socket.on('disconnect', function (data) {
+    socket.on('disconnecting', () => {
+      console.log(userObj.peerID)
       console.log('disconnected joejoe')
-      // socket.broadcast.emit('disconnected', onlineUsers[socket.id].username);
-
-      // delete onlineUsers[socket.id];
-      // socket.broadcast.emit('onlineUsers', onlineUsers);
+      socket.broadcast.emit('userDisconnecting', userObj.peerID)
     })
   })
 }
