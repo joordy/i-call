@@ -13,6 +13,10 @@ main section {
   padding: 1rem;
 }
 
+main section h2 {
+  margin-bottom: 2rem;
+}
+
 main section form fieldset {
   border: none;
   display: flex;

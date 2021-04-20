@@ -1,15 +1,15 @@
 const { v4: uuidV4 } = require('uuid')
 
 // Home route function
-const home = async (req, res) => {
+const dashboard = async (req, res) => {
   try {
     // console.log(uuidV4())
-    res.render('home', {
+    res.render('dashboard', {
       roomIDS: uuidV4(),
       pageInf: {
-        styles: 'home.css',
+        styles: 'dashboard.css',
         script: 'videoScript.js',
-        title: 'iCall — Videocalls',
+        title: 'iCall — Enter video call',
       },
     })
   } catch (err) {
@@ -18,4 +18,4 @@ const home = async (req, res) => {
 }
 
 // Export route
-module.exports = home
+module.exports = dashboard
