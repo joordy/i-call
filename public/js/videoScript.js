@@ -6,16 +6,16 @@ const chatForm = document.querySelector('#form')
 const chatMsg = document.querySelector('#chatMsg')
 const chatMessages = document.querySelector('#chatMessages')
 const myUserName = document.querySelector('#userName').innerHTML
-
+const peers = {}
 userVideo.muted = true
-let myVideoStream
-let peers = {}
 
+let myVideoStream
 let browserUserMedia =
   navigator.getUserMedia ||
   navigator.webkitGetUserMedia ||
   navigator.mozGetUserMedia
-let peerConnection = new Peer(undefined, {
+
+let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
   // port: '3232', // Development Port
@@ -32,23 +32,38 @@ navigator.mediaDevices
     console.log(myVideoStream)
     addNewUserVideoStream(userVideo, stream)
 
-    peerConnection.on('call', (answerCall) => {
+    console.log(myPeerConn._id)
+
+    myPeerConn.on('call', (answerCall) => {
       const video = document.createElement('video')
       answerCall.answer(stream)
+
       answerCall.on('stream', (newUserStream) => {
         addNewUserVideoStream(video, newUserStream)
       })
+
+      answerCall.on('close', () => {
+        alert('The videocall has finished')
+      })
+
+      peers[userID] = answerCall
+
+      //   myPeerConn.peerConnection.onconnectionstatechange = function (event) {
+      //     if (event.currentTarget.connectionState === 'disconnected') {
+      //       myPeerConn.close()
+      //     }
+      //   }
+      // console.log(myPeerConn)
     })
+
+    // call.on('close', () => {
+    //   alert('The videocall has finished')
+    // })
 
     // When new user will connect, it fires the NewUserConnected function on line 124
     socket.on('user-connected', (userID) => {
       newUserConnected(userID, stream)
     })
-
-    // socket.on('user-disconnected', (userID) => {
-    //   peerConnection.disconnect()
-    //   // newUserConnected(userID, stream)
-    // })
 
     // Prevents form for submitting, and creates a object which will be sended to
     // the server. The server will send it back to the client.
@@ -83,35 +98,48 @@ navigator.mediaDevices
       checkLastMessage(chatList)
     })
 
-    socket.on('disconnected', (roomID, userID) => {
+    // socket.on('user-disconnected', (userID) => {
+    //   myPeerConn.disconnect()
+    //   // newUserConnected(userID, stream)
+    // })
+
+    const myPeerID = myPeerConn._id
+    socket.on('user-disconnected', (myPeerID) => {
+      if (peers[myPeerID]) {
+        peers[myPeerID].close()
+      }
+      console.log(peers)
       console.log('user disconnected')
       // if (peers[userID]) peers[userID].close()
     })
+
+    // Fires all the Event Listeners
     videoEvents()
   })
 
 // Call connection of PeerJS, answers the call by opening the video src of the user.
-peerConnection.on('call', (answerCall) => {
+myPeerConn.on('call', (answerCall) => {
   browserUserMedia(
     { video: true, audio: true },
-    function (stream) {
+    (stream) => {
       const video = document.createElement('video')
       answerCall.answer(stream)
-      answerCall.on('stream', function (remoteStream) {
+      answerCall.on('stream', (remoteStream) => {
         addNewUserVideoStream(video, remoteStream)
       })
-      answerCall.on('close', function () {
+      answerCall.on('close', () => {
+        console.log('doeidoei')
         video.remove()
       })
     },
-    function (err) {
+    (err) => {
       console.log('Failed to get local stream', err)
     }
   )
 })
 
 // Opens connection of PeerJS, and sends roomID, peerID and userName to server.
-peerConnection.on('open', (id) => {
+myPeerConn.on('open', (id) => {
   console.log('roomID', roomID)
   socket.emit('join-room', {
     room_ID: roomID,
@@ -123,16 +151,20 @@ peerConnection.on('open', (id) => {
 // Function which adds the video connection using 'call' from PeerJS, adds video of new user to the app.
 function newUserConnected(userID, streams) {
   console.log('new user connected')
-  const callUser = peerConnection.call(userID, streams)
+  const callUser = myPeerConn.call(userID, streams)
   const video = document.createElement('video')
+
   callUser.on('stream', (newUserStream) => {
     console.log(newUserStream)
     addNewUserVideoStream(video, newUserStream)
   })
+
   callUser.on('close', () => {
     video.remove()
   })
+
   peers[userID] = callUser
+  console.log('peertjes', peers)
 
   // peers[userID] = callUser
 }
@@ -198,7 +230,9 @@ function videoEvents() {
     // myVideoStream.remove()
     // peerConnection.disconnect()
     // window.location.href = '/'
-
+    // myPeerConn.toUsername = $(this).attr('data-username')
+    // console.log(DataConnection)
+    // myPeerConn.close()
     console.log('C')
     console.log(endCall)
   })
@@ -247,7 +281,6 @@ function checkLastMessage(chatList) {
   if (chatArr.length >= 3) {
     const lastMsg = lastElem.childNodes[1].innerText
     const msgBefore = secLastElem.childNodes[1].innerText
-    console.log(lastMsg === msgBefore)
     if (lastMsg === msgBefore) {
       secLastElem.style.margin = 0
       secLastElem.style.paddingBottom = 0

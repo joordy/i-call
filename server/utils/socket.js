@@ -33,15 +33,13 @@ const initSocketIO = (server, newSession) => {
       }
     })
 
-    socket.on('disconnected', (roomID, userID) => {
-      console.log('user disconnected')
-      // socket.broadcast.to(roomID).emit('user-disconnected', userID)
+    socket.on('disconnect', function (data) {
+      console.log('disconnected joejoe')
+      // socket.broadcast.emit('disconnected', onlineUsers[socket.id].username);
+
+      // delete onlineUsers[socket.id];
+      // socket.broadcast.emit('onlineUsers', onlineUsers);
     })
-    // socket.on('user-disconnected', (userID, roomID) => {
-    //   console.log('user disconnected')
-    //   // socket.broadcast.to(roomID).emit('user-disconnected', userID)
-    //   // socket.broadcast.to(roomID).emit('user-disconnected', userID)
-    // })
   })
 }
 
