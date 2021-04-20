@@ -6,6 +6,7 @@ main {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
+  place-items: center;
   margin: 1rem;
 }
 
@@ -15,6 +16,13 @@ main section {
 
 main section h2 {
   margin-bottom: 2rem;
+}
+
+main section form {
+  min-height: 400px;
+  background-color: #202020;
+  padding: 2rem;
+  border-radius: 1rem;
 }
 
 main section form fieldset {
