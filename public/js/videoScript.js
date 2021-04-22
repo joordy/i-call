@@ -111,8 +111,10 @@ myPeerConn.on('call', async (answerCall) => {
   const endCall = document.getElementById('endCall')
 
   endCall.addEventListener('click', (e) => {
+    console.log(answerCall)
     answerCall.close()
     video.srcObject = null
+    window.location.href = '/dashboard'
   })
 
   console.log('socket:', socket)
@@ -121,29 +123,10 @@ myPeerConn.on('call', async (answerCall) => {
     console.log(elem)
     console.log('doei, inside')
     userDisconnected(elem)
+    const vid = document.getElementById(elem)
+    vid.parentNode.removeChild(vid);
   })
 })
-// // Call connection of PeerJS, answers the call by opening the video src of the user.
-// myPeerConn.on('call', (answerCall) => {
-//   browserUserMedia(
-//     { video: true, audio: true },
-//     (stream) => {
-//       console.log('existing peers', peers)
-//       const video = document.createElement('video')
-//       answerCall.answer(stream)
-//       answerCall.on('stream', (remoteStream) => {
-//         addNewUserVideoStream(video, remoteStream)
-//       })
-//       answerCall.on('close', () => {
-//         console.log('doeidoei')
-//         video.remove()
-//       })
-//     },
-//     (err) => {
-//       console.log('Failed to get local stream', err)
-//     }
-//   )
-// })
 
 // Opens connection of PeerJS, and sends roomID, peerID and userName to server.
 myPeerConn.on('open', (id) => {
@@ -175,13 +158,17 @@ function newUserConnected(userID, streams) {
   callUser.on('close', () => {
     console.log('hey hij is gestopt')
     video.srcObject = null
+    video.remove()
   })
 
   const endCall = document.getElementById('endCall')
 
   endCall.addEventListener('click', (e) => {
+    console.log(callUser)
     callUser.close()
     video.srcObject = null
+    window.location.href = '/dashboard'
+
   })
 
   socket.on('userDisconnecting', (elem) => {
@@ -198,8 +185,10 @@ function userDisconnected(userID) {
 
 // Add stream to video source
 function addNewUserVideoStream(videoElement, stream, className) {
+  console.log('nieuw stream', stream)
+  console.log('nieuw videoElement', videoElement)
   videoElement.srcObject = stream
-  videoElement.setAttribute('class', className)
+  videoElement.setAttribute('id', className)
   videoElement.addEventListener('loadedmetadata', () => {
     videoElement.play()
   })

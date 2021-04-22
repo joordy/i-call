@@ -195,6 +195,9 @@ footer p a {
   }
   main section:nth-child(1) img {
     top: -150px;
+    max-height: 550px;
+    width: auto;
+    margin: 0 auto;
   }
   main section:nth-child(3) article {
     display: flex;

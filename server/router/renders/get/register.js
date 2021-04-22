@@ -1,8 +1,13 @@
 // Home route function
 const register = async (req, res) => {
   try {
-    // console.log(uuidV4())
     res.redirect('/dashboard')
+    // res.render('register', {
+    //   pageInf: {
+    //     styles: 'form.css',
+    //     title: `Register — iCall`,
+    //   },
+    // })
   } catch (err) {
     console.log(err)
   }

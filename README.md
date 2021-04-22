@@ -2,7 +2,7 @@
 
 ## ✏️ **Description**
 
-iCall is a multi-user video platform where you can connect with your friends, based on a WebRTC connection. The app makes it possible to Video-call, chat, and send Cat Facts to the room. The app will be made with NodeJS, Express, Express-Handlebars, Socket.io and PeerJS. Check out my [NPM Packages](#-npm-packages) to see which other packages I've used.
+iCall is a multi-user video platform where you can connect with your friends, based on a WebRTC connection. The app makes it possible to have a video connection, chat functionality, and a command to send random Cat Facts using the [catfacts](#-api) API. The app will be made with NodeJS, Express, Express-Handlebars, Socket.io and PeerJS. Check out my [NPM Packages](#-npm-packages) to see which other packages I've used.
 
 ---
 
@@ -124,15 +124,21 @@ async function getRandomCatFact() {
 
 ## 🚀 **Features**
 
-### **Sockets**
+### **Video Connection**
 
 lorem
 
-### **Peer.js**
+### **Chat functionality**
 
 lorem
 
-- [peerJS](https://peerjs.com/)
+### **Register/Signin **
+
+lorem
+
+### **Cat fact command**
+
+lorem
 
 ---
 
