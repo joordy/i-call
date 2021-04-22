@@ -2,7 +2,13 @@
 const home = async (req, res) => {
   try {
     // console.log(uuidV4())
-    res.redirect('/dashboard')
+    res.render('home', {
+      pageInf: {
+        styles: 'home.css',
+        // script: 'videoScript.js',
+        title: ` That's what iCall intuitive — iCall`,
+      },
+    })
   } catch (err) {
     console.log(err)
   }

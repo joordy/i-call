@@ -46,16 +46,16 @@ export function videoEvents(myVideoStream, videoGridContainer) {
   })
 
   // Leaves call and remove video.
-  endCall.addEventListener('click', (e) => {
-    // myVideoStream.remove()
-    // peerConnection.disconnect()
-    // window.location.href = '/'
-    // myPeerConn.toUsername = $(this).attr('data-username')
-    // console.log(DataConnection)
-    // myPeerConn.close()
-    console.log('C')
-    console.log(endCall)
-  })
+  // endCall.addEventListener('click', (e) => {
+  //   // myVideoStream.remove()
+  //   // peerConnection.disconnect()
+  //   // window.location.href = '/'
+  //   // myPeerConn.toUsername = $(this).attr('data-username')
+  //   // console.log(DataConnection)
+  //   // myPeerConn.close()
+  //   console.log('C')
+  //   console.log(endCall)
+  // })
 
   // Open popup of invitation code.
   inviteUser.addEventListener('click', (e) => {

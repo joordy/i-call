@@ -22,8 +22,8 @@ let browserUserMedia =
 let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  // port: '3232', // Development Port
-  port: '443', // Heroku Port
+  port: '3232', // Development Port
+  // port: '443', // Heroku Port
 })
 
 navigator.mediaDevices
@@ -33,33 +33,16 @@ navigator.mediaDevices
   })
   .then((stream) => {
     myVideoStream = stream
-    console.log(myVideoStream)
+    // console.log(myVideoStream)
     addNewUserVideoStream(userVideo, stream, myPeerConn._id)
 
-    console.log(myPeerConn._id)
-
-    myPeerConn.on('call', (answerCall) => {
-      const video = document.createElement('video')
-      answerCall.answer(stream)
-      answerCall.on('stream', (newUserStream) => {
-        addNewUserVideoStream(video, newUserStream, myPeerConn._id)
-      })
-      answerCall.on('close', () => {
-        alert('The videocall has finished')
-      })
-      peers[userID] = answerCall
-      console.log(peers)
-    })
+    // console.log(myPeerConn._id)
 
     // When new user will connect, it fires the NewUserConnected function on line 124
     socket.on('user-connected', (userID) => {
+      console.log('User is connected', userID)
       newUserConnected(userID, stream)
     })
-
-    // socket.on('user-disconnect', (id) => {
-    //   console.log('test inside')
-    //   console.log(id)
-    // })
 
     // Prevents form for submitting, and creates a object which will be sended to
     // the server. The server will send it back to the client.
@@ -94,11 +77,11 @@ navigator.mediaDevices
       checkLastMessage(chatList)
     })
 
-    socket.on('userDisconnecting', (elem) => {
-      console.log(elem)
-      console.log('doei, inside')
-      userDisconnected(elem)
-    })
+    // socket.on('userDisconnecting', (elem) => {
+    //   console.log(elem)
+    //   console.log('doei, inside')
+    //   userDisconnected(elem)
+    // })
 
     const myPeerID = myPeerConn._id
 
@@ -106,27 +89,61 @@ navigator.mediaDevices
     videoEvents(myVideoStream, videoGridContainer)
   })
 
-// Call connection of PeerJS, answers the call by opening the video src of the user.
-myPeerConn.on('call', (answerCall) => {
-  browserUserMedia(
-    { video: true, audio: true },
-    (stream) => {
-      console.log('existing peers', peers)
-      const video = document.createElement('video')
-      answerCall.answer(stream)
-      answerCall.on('stream', (remoteStream) => {
-        addNewUserVideoStream(video, remoteStream)
-      })
-      answerCall.on('close', () => {
-        console.log('doeidoei')
-        video.remove()
-      })
-    },
-    (err) => {
-      console.log('Failed to get local stream', err)
-    }
-  )
+myPeerConn.on('call', async (answerCall) => {
+  // navigator.mediaDevices
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: true,
+  })
+  console.log('incoming call')
+  const video = document.createElement('video')
+  answerCall.answer(stream)
+
+  answerCall.on('stream', (newUserStream) => {
+    addNewUserVideoStream(video, newUserStream, myPeerConn._id)
+  })
+
+  answerCall.on('close', () => {
+    console.log('hey hij is gestopt (called)')
+    video.srcObject = null
+  })
+
+  const endCall = document.getElementById('endCall')
+
+  endCall.addEventListener('click', (e) => {
+    answerCall.close()
+    video.srcObject = null
+  })
+
+  console.log('socket:', socket)
+  socket.on('userDisconnecting', (elem) => {
+    console.log('host left')
+    console.log(elem)
+    console.log('doei, inside')
+    userDisconnected(elem)
+  })
 })
+// // Call connection of PeerJS, answers the call by opening the video src of the user.
+// myPeerConn.on('call', (answerCall) => {
+//   browserUserMedia(
+//     { video: true, audio: true },
+//     (stream) => {
+//       console.log('existing peers', peers)
+//       const video = document.createElement('video')
+//       answerCall.answer(stream)
+//       answerCall.on('stream', (remoteStream) => {
+//         addNewUserVideoStream(video, remoteStream)
+//       })
+//       answerCall.on('close', () => {
+//         console.log('doeidoei')
+//         video.remove()
+//       })
+//     },
+//     (err) => {
+//       console.log('Failed to get local stream', err)
+//     }
+//   )
+// })
 
 // Opens connection of PeerJS, and sends roomID, peerID and userName to server.
 myPeerConn.on('open', (id) => {
@@ -151,18 +168,28 @@ function newUserConnected(userID, streams) {
   const video = document.createElement('video')
 
   callUser.on('stream', (newUserStream) => {
-    console.log(newUserStream)
+    console.log('new user stream', newUserStream)
     addNewUserVideoStream(video, newUserStream, userID)
   })
 
   callUser.on('close', () => {
-    video.remove()
+    console.log('hey hij is gestopt')
+    video.srcObject = null
   })
 
-  peers[userID] = callUser
-  console.log('peertjes', peers)
+  const endCall = document.getElementById('endCall')
 
-  // peers[userID] = callUser
+  endCall.addEventListener('click', (e) => {
+    callUser.close()
+    video.srcObject = null
+  })
+
+  socket.on('userDisconnecting', (elem) => {
+    console.log('new user left')
+    console.log(elem)
+    console.log('doei, inside')
+    userDisconnected(elem)
+  })
 }
 
 function userDisconnected(userID) {
