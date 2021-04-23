@@ -22,8 +22,8 @@ let browserUserMedia =
 let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  // port: '3232', // Development Port
-  port: '443', // Heroku Port
+  port: '3232', // Development Port
+  // port: '443', // Heroku Port
 })
 
 navigator.mediaDevices
@@ -62,6 +62,7 @@ navigator.mediaDevices
     // the window will be automatically scrolled down, and the 'CreateChatElement' and 'CheckLastMessage'
     // will style the elements in HTML.
     socket.on('createMessage', (message) => {
+      console.log(message)
       console.log(
         `${message.text.user}, ${message.text.message} & ${message.time}`
       )

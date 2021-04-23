@@ -4,20 +4,14 @@ const http = require('http')
 const app = express()
 const path = require('path')
 const session = require('express-session')
-// const csrf = require("csurf");
-// const cookieParser = require("cookie-parser");
 const { auth } =require('express-openid-connect')
-
 const router = require('./router/routes')
-const hbs = require('./utils/hbsSetup')
+const hbs = require('./controller/hbsSetup')
 const port = process.env.PORT || 3232
 require('dotenv').config()
 
-//  CSRF prevent from attacks
-// const csrfMiddleware = csrf({ cookie: true });
-
 // Sockets
-const initSocketIO = require('./utils/socket')
+const initSocketIO = require('./models/socket')
 const server = http.createServer(app)
 
 // PeerJS
@@ -43,6 +37,7 @@ app
     })
   )
   .use(express.json())
+
   .use(express.static('public'))
   .use(
     session({
@@ -52,9 +47,7 @@ app
       saveUninitialized: true,
       secure: true,
     })
-  )
-  // .use(cookieParser())
-  // .use(csrfMiddleware)
+    )
   .use(router)
   .use('/peerjs', peerServer)
   .use((request, response, next) => {
@@ -63,13 +56,6 @@ app
     }
     next()
   })
-  // .use(auth({
-  //     baseURL: `${process.env.BASE_URL}`,
-  //     clientID: `${process.env.CLIENT_ID}`,
-  //     issuerBaseURL: `${process.env.ISSUER_BASE_URL}`,
-  //     secret: `${process.env.SECRET}`,
-    
-  //   }))
 
 
 // Use Socket.io function in application

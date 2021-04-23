@@ -1,4 +1,4 @@
-// Home route function
+// 404 route function
 const notFound = async (req, res) => {
   try {
     res.status(404).render('404', { title: '404 Not Found' })

@@ -1,6 +1,8 @@
-// Home route function
+// Rooms route function (POST)
 const rooms = async (req, res) => {
   try {
+    console.log(req.body)
+    console.log(req.session)
     const room = req.body.roomID
     req.session.userName = req.body.userName
     req.session.save()

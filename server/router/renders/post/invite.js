@@ -1,11 +1,9 @@
-// Home route function
+// Invite route function (POST)
 const invite = async (req, res) => {
   try {
-    console.log('invite.js')
     req.session.userName = req.body.userName
     req.session.save()
-    console.log('req.body from invite.js', req.body)
-
+    
     res.render('rooms', {
       room: req.body.roomID,
       userName: req.session.userName,
