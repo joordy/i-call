@@ -6,21 +6,7 @@
     <section>
       <h1>Sign up</h1>
 
-      <form action="/register" method="POST">
-        {{!-- <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <button type="submit">Register</button> --}}
-        
+      <form method="POST" action="/postRegister" id="signupForm">        
         <fieldset>
           <label for="name">Name</label>
           <input
@@ -29,7 +15,6 @@
             name="name"
             class="form-control"
             placeholder="Enter Name"
-            {{!-- value="<%= typeof name != 'undefined' ? name : '' %>" --}}
           />
         </fieldset>
         <fieldset>
@@ -40,7 +25,6 @@
             name="email"
             class="form-control"
             placeholder="Enter Email"
-            {{!-- value="<%= typeof email != 'undefined' ? email : '' %>" --}}
           />
         </fieldset>
         <fieldset>
@@ -51,7 +35,6 @@
             name="password"
             class="form-control"
             placeholder="Create Password"
-            {{!-- value="{{{ typeof password != 'undefined' ? password : '' }}}" --}}
           />
         </fieldset>
         <fieldset>
@@ -62,19 +45,20 @@
             name="password2"
             class="form-control"
             placeholder="Confirm Password"
-            {{!-- value="<%= typeof password2 != 'undefined' ? password2 : '' %>" --}}
           />
         </fieldset>
-
         <button type="submit">Login</button>
-
       </form>
 
       <hr>
 
       <h2>Already member?</h2>
-      <a href="/login">Sign in</a>
+      <a href="/login">Sign in</a> 
 
     </section>
   </main>
+
+  <script>
+
+  </script>
 </body>

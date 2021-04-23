@@ -1,6 +1,7 @@
 // Home route function
-const home = async (req, res) => {
+const home = async (req, res, next) => {
   try {
+    console.log(test)
     // console.log(uuidV4())
     res.render('home', {
       pageInf: {
