@@ -1,8 +1,13 @@
 // Home route function
 const login = async (req, res) => {
   try {
-    // console.log(uuidV4())
     res.redirect('/dashboard')
+    // res.render('login', {
+    //   pageInf: {
+    //     styles: 'form.css',
+    //     title: `Log in — iCall`,
+    //   },
+    // })
   } catch (err) {
     console.log(err)
   }

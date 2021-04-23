@@ -1,0 +1,66 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+main section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main section form {
+  min-width: 300px;
+  margin: 2rem 0;
+}
+
+main section form fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  margin: 1rem 0;
+}
+
+main section form fieldset label {
+  margin: 0 0 .5rem 0;
+  font-weight: 600;
+}
+
+main section form fieldset input {
+  padding: 10px 7.5px;
+  border-radius: 8px;
+  border: 0.5px solid #d2d2d2;
+}
+
+main section form fieldset input::placeholder {
+  color: #d2d2d2;
+}
+
+main section form button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #02b173;
+  color: #efefef;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+}
+
+main section hr {
+  margin: 2rem auto;
+  min-width: 300px;
+  height: 2px;
+  color: hotpink;
+}
+
+main section h2 {
+  margin-bottom: 2rem;
+}
+
+main section a {
+  font-weight: 600;
+  color: #02b173;
+  text-decoration: none;;
+}
