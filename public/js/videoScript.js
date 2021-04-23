@@ -22,8 +22,8 @@ let browserUserMedia =
 let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3232', // Development Port
-  // port: '443', // Heroku Port
+  // port: '3232', // Development Port
+  port: '443', // Heroku Port
 })
 
 navigator.mediaDevices
