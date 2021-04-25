@@ -15,16 +15,12 @@ const peers = {}
 userVideo.muted = true
 
 let myVideoStream
-// let browserUserMedia =
-//   navigator.getUserMedia ||
-//   navigator.webkitGetUserMedia ||
-//   navigator.mozGetUserMedia
 
 let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3232', // Development Port
-  // port: '443', // Heroku Port
+  // port: '3232', // Development Port
+  port: '443', // Heroku Port
 })
 
 navigator.mediaDevices
@@ -72,12 +68,6 @@ navigator.mediaDevices
       }
       checkLastMessage(chatList)
     })
-
-    // socket.on('userDisconnecting', (elem) => {
-    //   console.log(elem)
-    //   console.log('doei, inside')
-    //   userDisconnected(elem)
-    // })
 
     const myPeerID = myPeerConn._id
 
