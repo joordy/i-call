@@ -1,5 +1,6 @@
 // Importing Event Listeners
 import { videoEvents } from './utils/videoEvents.js'
+import { checkLastMessage, createChatElement } from './utils/chats.js'
 
 // Global variables
 const socket = io('/')
@@ -14,10 +15,6 @@ const peers = {}
 userVideo.muted = true
 
 let myVideoStream
-let browserUserMedia =
-  navigator.getUserMedia ||
-  navigator.webkitGetUserMedia ||
-  navigator.mozGetUserMedia
 
 let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
@@ -33,10 +30,7 @@ navigator.mediaDevices
   })
   .then((stream) => {
     myVideoStream = stream
-    // console.log(myVideoStream)
     addNewUserVideoStream(userVideo, stream, myPeerConn._id)
-
-    // console.log(myPeerConn._id)
 
     // When new user will connect, it fires the NewUserConnected function on line 124
     socket.on('user-connected', (userID) => {
@@ -62,9 +56,7 @@ navigator.mediaDevices
     // the window will be automatically scrolled down, and the 'CreateChatElement' and 'CheckLastMessage'
     // will style the elements in HTML.
     socket.on('createMessage', (message) => {
-      console.log(
-        `${message.text.user}, ${message.text.message} & ${message.time}`
-      )
+      console.log(message)
 
       const chatElem = createChatElement(message)
       const chatList = document.querySelector('.chatMessages')
@@ -76,12 +68,6 @@ navigator.mediaDevices
       }
       checkLastMessage(chatList)
     })
-
-    // socket.on('userDisconnecting', (elem) => {
-    //   console.log(elem)
-    //   console.log('doei, inside')
-    //   userDisconnected(elem)
-    // })
 
     const myPeerID = myPeerConn._id
 
@@ -124,6 +110,7 @@ myPeerConn.on('call', async (answerCall) => {
     console.log('doei, inside')
     userDisconnected(elem)
     const vid = document.getElementById(elem)
+    console.log(vid)
     vid.parentNode.removeChild(vid);
   })
 })
@@ -180,7 +167,9 @@ function newUserConnected(userID, streams) {
 }
 
 function userDisconnected(userID) {
-  console.log(userID)
+  const vidElem = document.querySelector(`#${userID}`)
+  console.log(userID, vidElem)
+
 }
 
 // Add stream to video source
@@ -193,51 +182,4 @@ function addNewUserVideoStream(videoElement, stream, className) {
     videoElement.play()
   })
   videoGridContainer.append(videoElement)
-}
-
-// If there are two messages in a row from the same user, this code
-// will remove the name and time from the previous message.
-function checkLastMessage(chatList) {
-  const chatArr = chatList.childNodes
-  let lastElem = chatArr[chatArr.length - 1]
-  let secLastElem = chatArr[chatArr.length - 2]
-
-  if (chatArr.length >= 3) {
-    const lastMsg = lastElem.childNodes[1].innerText
-    const msgBefore = secLastElem.childNodes[1].innerText
-    if (lastMsg === msgBefore) {
-      secLastElem.style.margin = 0
-      secLastElem.style.paddingBottom = 0
-      secLastElem.style.paddingTop = 0
-      lastElem.style.paddingTop = 0
-      secLastElem.removeChild(secLastElem.childNodes[1])
-      secLastElem.removeChild(secLastElem.childNodes[1])
-    }
-  }
-}
-
-// Function which creates a list item of a chat message
-// including message, sender and time.
-function createChatElement(message) {
-  const listElem = document.createElement('li')
-  const sendElem = document.createElement('p')
-  const timeElem = document.createElement('p')
-  const msgElem = document.createElement('p')
-
-  sendElem.setAttribute('id', 'sender')
-  timeElem.setAttribute('id', 'time')
-
-  const sender = document.createTextNode(message.text.user)
-  const time = document.createTextNode(message.time)
-  const msg = document.createTextNode(message.text.message)
-
-  sendElem.appendChild(sender)
-  timeElem.appendChild(time)
-  msgElem.appendChild(msg)
-
-  listElem.appendChild(msgElem)
-  listElem.appendChild(sendElem)
-  listElem.appendChild(timeElem)
-
-  return listElem
 }

@@ -1,4 +1,4 @@
-// Home route function
+// Rooms route function (POST)
 const rooms = async (req, res) => {
   try {
     const room = req.body.roomID

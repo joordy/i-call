@@ -1,9 +1,46 @@
 header {
-  padding: 4rem 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  position: relative;
 }
 
-header h1 {
-  text-align: center;
+header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+header div img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+
+header div.profilePopup {
+  position: absolute;
+  top: 75px;
+  right: 1rem;
+  z-index: 1;
+  background-color: white;
+  border: .5px solid #cdcdcd;
+  display: none;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 3rem 1rem;
+  text-align: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+header div.profilePopup.active {
+  display: flex;
+}
+header div.profilePopup a {
+  text-decoration: none;
+  margin: 5px 0;
+  color: black;
 }
 
 main {

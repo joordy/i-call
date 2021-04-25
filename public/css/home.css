@@ -16,6 +16,11 @@ header {
   );
 }
 
+header img {
+  height: 50px;
+  width: auto;;
+}
+
 header nav {
   padding: 3rem 2rem;
   display: flex;
@@ -196,6 +201,7 @@ footer p a {
   main section:nth-child(1) img {
     top: -150px;
     max-height: 550px;
+    max-width: 100%;
     width: auto;
     margin: 0 auto;
   }

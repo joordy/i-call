@@ -1,6 +1,16 @@
 <body>
   <header>
     <h1>iCall</h1>
+
+    <div class="accInfo"> 
+      <p>{{user.given_name}} {{user.family_name}}</p>
+      <img src="{{user.picture}}" alt="">
+    </div>
+
+    <div class="profilePopup">
+      <a href="#">Profile settings</a>
+      <a href="/logout"><span></span>Log out</a>
+    </div>
   </header>
 
   <main>

@@ -1,6 +1,6 @@
-const moment = require('moment')
 const sharedSessions = require('express-socket.io-session')
-const fetcher = require('../utils/fetch')
+const createMessage = require('./../controller/createMessage')
+const getRandomCatFact = require('./../controller/returnCatFact')
 
 const initSocketIO = (server, newSession) => {
   const io = require('socket.io')(server)
@@ -39,28 +39,6 @@ const initSocketIO = (server, newSession) => {
       socket.broadcast.emit('userDisconnecting', userObj.peerID)
     })
   })
-}
-
-// Formats time for the messages with the moment NPM package
-function createMessage(text) {
-  return {
-    text,
-    time: moment().format('h:mm a'),
-  }
-}
-
-// Function to format a random cat fact. The response will give 5 popular cat-facts
-// for the day, and the NUM variable takes a randomized option from the array list.
-async function getRandomCatFact() {
-  const response = await fetcher('https://cat-fact.herokuapp.com/facts')
-  const num = Math.floor(Math.random() * 5) + 1
-  console.log(response[num])
-  console.log(num)
-  const catFact = {
-    message: `${response[num].text}`,
-    user: 'CatFacts',
-  }
-  return catFact
 }
 
 module.exports = initSocketIO
