@@ -16,6 +16,11 @@ header {
   );
 }
 
+header img {
+  height: 50px;
+  width: auto;;
+}
+
 header nav {
   padding: 3rem 2rem;
   display: flex;
