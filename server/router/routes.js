@@ -23,6 +23,7 @@ router.use(auth({
 // Get routes
 router.get('/', home)
 router.get('/dashboard', requiresAuth(), dashboard)
+router.get('/*', notFound)
 // router.get('/rooms/:roomID', requiresAuth(), isUserLoggedIn, rooms)
 
 // Post routes
