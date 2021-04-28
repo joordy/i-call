@@ -1,9 +1,11 @@
 // Invite route function (POST)
 const invite = async (req, res) => {
   try {
+    // Save username to session storage
     req.session.userName = req.body.userName
     req.session.save()
     
+    // Render video-room page with session information
     res.render('rooms', {
       room: req.body.roomID,
       userName: req.session.userName,
