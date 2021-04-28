@@ -74,6 +74,8 @@ lorem
 
 The API I will use for this application is the [CatFacts API](https://github.com/alexwohlbruck/cat-facts). I chose this API to keep the application funnier. The response returned by the API is an array with 5 different results. Based on a random index number, a random fact is retrieved.
 
+For this CatFacts API you don't need to obtain an API key. By just fetching the correct link you will get a response in your code.
+
 <details style="margin: 1em 0;">
   <summary style="margin: 1em 0;">Fetch the API data</summary>
 
@@ -125,7 +127,7 @@ async function getRandomCatFact() {
 ## 🚀 **Features**
 
 ### **Video Connection**
-
+ 
 lorem
 
 ### **Chat functionality**
@@ -147,6 +149,7 @@ lorem
 - [DotEnv](https://www.npmjs.com/package/dotenv)
 - [Express](https://www.npmjs.com/package/express)
 - [Express-Handlebars](https://www.npmjs.com/package/express-handlebars)
+- [Express-Openid-Connect](https://www.npm.com/package/express-openid-connect)
 - [Express-Sessions](https://www.npmjs.com/package/express-sessions)
 - [Express Socket.io Session](https://www.npmjs.com/package/express-socket.io-session)
 - [Moment](https://www.npmjs.com/package/moment)
@@ -154,7 +157,6 @@ lorem
 - [Peer](https://www.npmjs.com/package/peer)
 - [Socket.io](https://www.npmjs.com/package/socket.io)
 - [Uuid](https://www.npmjs.com/package/uuid)
-
 - [Nodemon](https://www.npmjs.com/package/nodemon)
 - [Eslint](https://www.npmjs.com/package/eslint)
 - [Prettier](https://www.npmjs.com/package/prettier)
@@ -183,27 +185,8 @@ lorem
   ```bash
     npm run build
   ```
-  <!--
 
-# ### **Deploy the project**
-
-# - **Visit heroku**
-
-# [https://www.heroku.com/](https://www.heroku.com/)
-
-# - **Create app**
-
-# Dashboard > New > Create new app
-
-# - **Connect Github Repository**
-
-# Set master branch as deployment branch
-
-# - **Open application**
-
-# On the custom domain which is how you've called your project
-
-## -->
+---
 
 ## 🔍 **Sources**
 
@@ -244,3 +227,4 @@ This is a repository which is licensed as [MIT](https://github.com/joordy/i-call
 <!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
 
 <!-- How about a license here? 📜  -->
+
