@@ -18,8 +18,8 @@ let myVideoStream
 let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  // port: '3232', // Development Port
-  port: '443', // Heroku Port
+  port: '3232', // Development Port
+  // port: '443', // Heroku Port
 })
 
 
@@ -106,7 +106,6 @@ myPeerConn.on('call', async (answerCall) => {
 
 // Opens connection of PeerJS, and sends roomID, peerID and userName to server.
 myPeerConn.on('open', (id) => {
-  // console.log('roomID', roomID)
   socket.emit('join-room', {
     room_ID: roomID,
     peer_ID: id,

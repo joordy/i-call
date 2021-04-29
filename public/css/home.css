@@ -1,4 +1,284 @@
+html {
+  scroll-behavior: smooth;
+}  
 body {
+  background-color: #f4f5ff;
+  overflow-x: hidden;
+}
+
+/******* Header *******/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+}
+
+header nav ul li {
+  margin: 0rem 0rem 0rem 0.5rem ;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: black;
+  border-radius: 2rem;
+  border: 0.5px solid #0853dd;
+  padding: 0.45rem 1rem;
+
+}
+
+header nav ul li:nth-of-type(4) a {
+  color: #0853dd;
+  background-color: transparent;
+}
+
+header nav ul li:nth-of-type(5) a {
+  color: white;
+  background-color: #0853dd;
+}
+/******* Main *******/
+
+main {
+  margin: 0 1rem;
+}
+
+main .introduction {
+  text-align: center;
+}
+
+main .introduction article:first-of-type {
+  max-width: 450px;
+}
+
+main .introduction article h1 {
+  font-size: 1.75rem;
+  margin: 3rem 0 1rem;
+}
+
+main .introduction article h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+main .introduction article ul {
+  list-style-position: inside;
+}
+
+main .introduction article ul li {
+  margin: 0 0 .5rem 0;
+}
+
+main .introduction article div {
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+main .introduction article div a {
+  padding: 0.75rem 1.25rem;
+  color: white;
+  background-color: #0853dd;
+  border-radius: 8px;
+  border: 0.25px solid #0853dd;
+  text-decoration: none;
+  margin: 0 .25rem 0 0;
+
+}
+main .introduction article div a:last-of-type {
+  background-color: transparent;
+  color: #0853dd;
+  margin: 0 0 0 .25rem;
+}
+
+main .introduction article img {
+  padding: 2rem;
+  max-width: 100%;
+}
+
+main .features {
+  padding: 5vw 0;
+}
+
+main .features h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+main .features article  {
+  display: flex;
+  flex-direction: column;
+}
+
+main .features article aside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: .5rem 0 0rem;
+}
+
+main .features article aside div:first-of-type {
+  padding: .5rem;
+  margin-right: 1rem;
+}
+
+main .features article aside div:first-of-type img {
+  width: 48px;
+  height: 48px;
+}
+
+main .features article aside div:last-of-type {
+  max-width: 450px;
+}
+/* main {
+  text-align: center;
+}
+
+main h1 {
+  font-size: 3rem;
+}
+
+main .introduction {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main .introduction h1 {
+  margin: 3rem 0;
+}
+main .introduction h2 {
+  font-weight: 300;
+}
+
+main .introduction div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+  max-width: 450px;
+  margin: 3rem auto 0;
+}
+
+main .introduction div a {
+  padding: 0.75rem 2rem;
+  color: white;
+  background-color: #0853dd;
+  border-radius: 8px;
+  border: 0.25px solid #0853dd;
+  text-decoration: none;
+  margin: 0 1rem 0 0;
+
+}
+main .introduction div a:last-of-type {
+  background-color: transparent;
+  color: #0853dd;
+  margin: 0 0 0 1rem;
+}
+
+main .introduction img {
+  max-width: 100%;
+} */
+
+/******* Footer *******/
+
+footer {
+  padding: 1.5rem 0;
+}
+
+footer p {
+  text-align: center;
+}
+
+footer p a {
+  text-decoration: none;
+  color: #0853dd;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+footer p a:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/******* Media querys *******/
+
+@media screen and (max-width: 768px) {
+  header nav ul li:nth-of-type(1), 
+  header nav ul li:nth-of-type(2), 
+  header nav ul li:nth-of-type(3) {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  header nav ul li:nth-of-type(1) a, 
+  header nav ul li:nth-of-type(2) a, 
+  header nav ul li:nth-of-type(3) a {
+    border: none;
+  }
+
+  main {
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  main .introduction {
+    padding: 10vw 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+    text-align: left;
+  }
+  main .introduction article {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  main .introduction article h1, 
+  main .introduction article ul {
+    margin-bottom: 2rem;
+  }
+  main .introduction article h2 {
+    margin-bottom: 4rem;
+  }
+  main .introduction article div {
+    justify-content: unset;
+  }
+
+  main .introduction article:last-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  main, header {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  header {
+    padding: 2em 0;
+  }
+  main .introduction {
+    grid-template-columns: 1fr 2fr;  
+  }
+}
+
+/* body {
   background-color: #f4f5ff;
   overflow-x: hidden;
 }
@@ -29,7 +309,7 @@ header nav {
 }
 
 header nav a {
-  color: #348065;
+  color: #2F80EC;
   text-decoration: none;
 }
 
@@ -59,12 +339,12 @@ header nav > a:last-of-type {
   justify-content: flex-end;
   display: block;
   padding: 1rem 3rem;
-  border: 1px solid #348065;
+  border: 1px solid #2F80EC;
   border-radius: 4px;
 }
 
 header h1 {
-  color: #348065;
+  color: #2F80EC;
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
 }
@@ -121,7 +401,7 @@ main section:nth-child(2) ul {
 main section:nth-child(2) ul li {
   margin: 0 1rem;
   font-weight: 700;
-  color: #348065;
+  color: #2F80EC;
 }
 
 main section:nth-child(3) article {
@@ -151,7 +431,7 @@ main section:nth-child(4) {
   left: -5vw;
   width: 100vw;
   padding: 5rem 0;
-  background-color: #348065;
+  background-color: #2F80EC;
   color: #f6f0f0;
 }
 
@@ -170,7 +450,7 @@ main section:nth-child(4) a {
 }
 
 footer {
-  padding: 5rem 0;
+  padding: 1.5rem 0;
 }
 
 footer p {
@@ -181,6 +461,12 @@ footer p a {
   text-decoration: none;
   color: #0853dd;
   font-weight: 600;
+  transition: 0.2s ease;
+}
+
+footer p a:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 @media (min-width: 900px) {
@@ -218,4 +504,4 @@ footer p a {
   main section:nth-child(4) {
     left: -10vw;
   }
-}
+} */

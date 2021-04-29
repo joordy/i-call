@@ -50,7 +50,7 @@ The concept I chose to develop is the video platform in combination with the Cat
 
 ## 💹 **Data Flow Diagram**
 
-![Data flow Diagram](https://user-images.githubusercontent.com/48051912/114943487-5b348500-9e46-11eb-886e-7b3e709e4975.png)
+![Data flow Diagram](https://user-images.githubusercontent.com/48051912/116613210-b1222600-a938-11eb-9be9-89abdec8e82d.jpg)
 
 <!-- # https://asciiflow.com/#/
 
@@ -63,10 +63,6 @@ The concept I chose to develop is the video platform in combination with the Cat
 # - Voeg de methode voor verkrijgen en versturen van data (pub/sub, http request/response, socket request/response, authorization, Oauth)
 
 # - Voeg deze data-flow toe aan je readme -->
-
-## 🔦 **Description**
-
-lorem
 
 ---
 
@@ -193,6 +189,8 @@ lorem
 - https://peerjs.com/
 - https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/getVideoTracks
 - https://socket.io/
+- https://auth0.com/#!
+- 
 
 ---
 

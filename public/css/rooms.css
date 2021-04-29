@@ -51,6 +51,7 @@ main .videoGrid {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
 }
 main .videoGrid.active {
   height: 70vh;

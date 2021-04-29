@@ -53,4 +53,3 @@ const initSocketIO = (server, newSession) => {
 
 // Export socket module
 module.exports = initSocketIO
- 

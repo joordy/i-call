@@ -5,7 +5,7 @@ body {
 
 main {
   width: 100%;
-  height: calc(100vh - 3rem);
+  height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,6 +29,21 @@ main a {
 }
 
 footer {
-  height: 3rem;
+  padding: 1.5rem 0;
+}
+
+footer p {
   text-align: center;
+}
+
+footer p a {
+  text-decoration: none;
+  color: #0853dd;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+footer p a:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
