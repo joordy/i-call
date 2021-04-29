@@ -2,3 +2,4 @@ _coursefiles/
 node_modules/
 _trash/
 .env
+_dummy.js

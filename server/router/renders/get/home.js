@@ -1,8 +1,9 @@
 // Home route function (GET)
 const home = async (req, res, next) => {
   try {
-    if (req.oidc.isAuthenticated() === false) {
-      // When user isn't authenticated, load sign-in page
+    // Check if user is authenticated
+    if (!req.oidc.isAuthenticated()) {
+      // Render login page when isn't authenticated
       res.render('home', {
         pageInf: {
           styles: 'home.css',

@@ -3,22 +3,29 @@ const createMessage = require('./../controller/createMessage')
 const getRandomCatFact = require('./../controller/returnCatFact')
 
 const initSocketIO = (server, newSession) => {
+
+  // Requires package of socket, and connect seperated server to it
   const io = require('socket.io')(server)
 
+  // Create socket connection
   io.on('connection', (socket) => {
+    // User object, 
     let userObj = {}
+
     // Use a session to work with the userName as params
     io.use(sharedSessions(newSession))
 
-    // Join video-room,
+    // Join video-room
     socket.on('join-room', (obj) => {
+      // Add information to User Object
       userObj.roomID = obj.room_ID
       userObj.peerID = obj.peer_ID
-      console.log(obj)
-      console.log('user connected')
+
+      // Join room ID 
       socket.join(obj.room_ID)
+
+      // Add user to room, and send it to client-side
       io.in(obj.room_ID).emit('user-connected', obj.peer_ID)
-      // socket.broadcast.to(obj.room_ID).emit('user-connected', obj.peer_ID)
     })
 
     // Sends message to client
@@ -26,19 +33,24 @@ const initSocketIO = (server, newSession) => {
       // Send message to specific room ID, so room A doesn't receive messages from room B
       io.to(obj.room_ID).emit('createMessage', createMessage(obj))
 
-      // If a message contains the word 'CatFact', the room will receive a randomized cat fact
+      // Check if message contains the word of cat facts
       if (obj.message.includes('catfact')) {
+        // Fetch random cat fact
         const catFact = await getRandomCatFact()
+
+        // Send message to client-side with catfact
         io.to(obj.room_ID).emit('createMessage', createMessage(catFact))
       }
     })
 
+    // Disconnect user from room 
     socket.on('disconnecting', () => {
-      console.log(userObj.peerID)
-      console.log('disconnected joejoe')
+      // Disconnect the user, and send Peer ID to client, to remove specific call and video
       socket.broadcast.emit('userDisconnecting', userObj.peerID)
     })
   })
 }
 
+// Export socket module
 module.exports = initSocketIO
+ 

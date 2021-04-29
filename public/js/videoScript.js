@@ -11,9 +11,8 @@ const chatForm = document.querySelector('#form')
 const chatMsg = document.querySelector('#chatMsg')
 const chatMessages = document.querySelector('#chatMessages')
 const myUserName = document.querySelector('#userName').innerHTML
-const peers = {}
+const endCall = document.getElementById('endCall')
 userVideo.muted = true
-
 let myVideoStream
 
 let myPeerConn = new Peer(undefined, {
@@ -23,6 +22,7 @@ let myPeerConn = new Peer(undefined, {
   port: '443', // Heroku Port
 })
 
+
 navigator.mediaDevices
   .getUserMedia({
     video: true,
@@ -30,6 +30,7 @@ navigator.mediaDevices
   })
   .then((stream) => {
     myVideoStream = stream
+
     addNewUserVideoStream(userVideo, stream, myPeerConn._id)
 
     // When new user will connect, it fires the NewUserConnected function on line 124
@@ -38,86 +39,81 @@ navigator.mediaDevices
       newUserConnected(userID, stream)
     })
 
-    // Prevents form for submitting, and creates a object which will be sended to
-    // the server. The server will send it back to the client.
+    // Prevends form submission
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault()
+      
+      // Checks if form isn't empty
       if (chatMsg.value != '') {
+        
+        // Create message object and send to server
         socket.emit('message', {
           message: chatMsg.value,
           user: myUserName,
           room_ID: roomID,
         })
+
+        // Clear message field.
         chatMsg.value = ''
       }
     })
 
-    // The received information of the server will be added to the 'Chat Messages' box,
-    // the window will be automatically scrolled down, and the 'CreateChatElement' and 'CheckLastMessage'
-    // will style the elements in HTML.
+    // Send message to specific room, received from the server
     socket.on('createMessage', (message) => {
-      console.log(message)
-
+      // Create chat element function
       const chatElem = createChatElement(message)
+  
+      // Select chat message container and append element
       const chatList = document.querySelector('.chatMessages')
       chatList.appendChild(chatElem)
+
+      // Automatic scroll to bottom
       chatList.scrollTop = chatList.scrollHeight
 
+      // When user sended it by themself, add class of Own Message
       if (message.text.user === myUserName) {
         chatElem.setAttribute('class', 'ownMessage')
       }
+
+      // Check last message, to remove duplicate name and times
       checkLastMessage(chatList)
     })
 
-    const myPeerID = myPeerConn._id
-
-    // Fires all the Event Listeners
+    // Fires all the Event Listeners of the video-call options
     videoEvents(myVideoStream, videoGridContainer)
   })
 
 myPeerConn.on('call', async (answerCall) => {
-  // navigator.mediaDevices
+  const video = document.createElement('video')
   const stream = await navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true,
   })
-  console.log('incoming call')
-  const video = document.createElement('video')
+
+  // Answers incoming call
   answerCall.answer(stream)
 
+  // Add videostream to the call
   answerCall.on('stream', (newUserStream) => {
-    addNewUserVideoStream(video, newUserStream, myPeerConn._id)
+    addNewUserVideoStream(video, newUserStream, answerCall.peer)
   })
 
-  answerCall.on('close', () => {
-    console.log('hey hij is gestopt (called)')
-    video.srcObject = null
+  // When user is leaving the socket connection, by disconnecting, the user's video will be removed.
+  socket.on('userDisconnecting', (elem) => {
+    removeVideo(answerCall, elem)
   })
-
-  const endCall = document.getElementById('endCall')
-
+  
+  // When user end's connection, send to dashboard page
   endCall.addEventListener('click', (e) => {
-    console.log(answerCall)
-    answerCall.close()
-    video.srcObject = null
+    console.log('stop bellen')
     window.location.href = '/dashboard'
   })
 
-  console.log('socket:', socket)
-  socket.on('userDisconnecting', (elem) => {
-    console.log('host left')
-    console.log(elem)
-    console.log('doei, inside')
-    userDisconnected(elem)
-    const vid = document.getElementById(elem)
-    console.log(vid)
-    vid.parentNode.removeChild(vid);
-  })
 })
 
 // Opens connection of PeerJS, and sends roomID, peerID and userName to server.
 myPeerConn.on('open', (id) => {
-  console.log('roomID', roomID)
+  // console.log('roomID', roomID)
   socket.emit('join-room', {
     room_ID: roomID,
     peer_ID: id,
@@ -125,61 +121,62 @@ myPeerConn.on('open', (id) => {
   })
 })
 
-socket.on('user-disconnect', (id) => {
-  console.log('test outside')
-  userDisconnected(id)
-  console.log(id)
-})
-
 // Function which adds the video connection using 'call' from PeerJS, adds video of new user to the app.
 function newUserConnected(userID, streams) {
-  console.log('new user connected')
-  const callUser = myPeerConn.call(userID, streams)
   const video = document.createElement('video')
 
+  // Call other users
+  const callUser = myPeerConn.call(userID, streams)
+
+  // Add videostream to the call
   callUser.on('stream', (newUserStream) => {
-    console.log('new user stream', newUserStream)
-    addNewUserVideoStream(video, newUserStream, userID)
+    addNewUserVideoStream(video, newUserStream, callUser.peer)
   })
 
-  callUser.on('close', () => {
-    console.log('hey hij is gestopt')
-    video.srcObject = null
-    video.remove()
-  })
-
-  const endCall = document.getElementById('endCall')
-
-  endCall.addEventListener('click', (e) => {
-    console.log(callUser)
-    callUser.close()
-    video.srcObject = null
-    window.location.href = '/dashboard'
-
-  })
-
+  // When user is leaving the socket connection, by disconnecting, the user's video will be removed.
   socket.on('userDisconnecting', (elem) => {
-    console.log('new user left')
-    console.log(elem)
-    console.log('doei, inside')
-    userDisconnected(elem)
+    removeVideo(callUser, elem)
   })
-}
 
-function userDisconnected(userID) {
-  const vidElem = document.querySelector(`#${userID}`)
-  console.log(userID, vidElem)
-
+  // When user end's connection, send to dashboard page
+  endCall.addEventListener('click', (e) => {
+    console.log('Dit is een beindig bel knop')
+    window.location.href = '/dashboard'
+  })
 }
 
 // Add stream to video source
 function addNewUserVideoStream(videoElement, stream, className) {
-  console.log('nieuw stream', stream)
-  console.log('nieuw videoElement', videoElement)
   videoElement.srcObject = stream
-  videoElement.setAttribute('id', className)
+  videoElement.setAttribute('class', className)
   videoElement.addEventListener('loadedmetadata', () => {
     videoElement.play()
   })
   videoGridContainer.append(videoElement)
+}
+
+function removeVideo(callConnection, elem) {
+    console.log('This lad leaved:', elem)
+
+    // Checks if provider connections are existing
+    if (callConnection.provider._connections) {
+      let allUserConnections = []
+      
+      // Push all object values in userArr
+      for (let item of callConnection.provider._connections) {
+        allUserConnections.push(item[0])
+      }
+      
+      // Filter leaved user ID with the connection ID's
+      const leavedUsers = allUserConnections.filter(id => id === elem)
+
+      // If leavedUsers exists, find HTML element of leaved user and remove it from HTML
+      if (leavedUsers) {
+        let leavedUserVid = document.getElementsByClassName(`${leavedUsers[0]}`)
+        for (let item of leavedUserVid) {
+          console.log(item);
+          item.remove()
+        }
+      }
+    }
 }
