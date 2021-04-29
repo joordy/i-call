@@ -212,7 +212,7 @@ Below is a list of features I'd love to add my videocall platform. The features 
 - MDN. (2021f, March 30). MediaStream.getVideoTracks() - Web APIs | MDN. https://developer.mozilla.org/en-US/docs/Web/API/MediaStream/getVideoTracks
 - Socket.io. (n.d.). Socket.IO enables real-time, bidirectional and event-based communication. https://www.socket.io/
 - Auth0. (n.d.). Auth0: Secure access for everyone. But not just anyone. https://auth0.com/#!
-- 
+- J. Sturkenboom (n.d.). ju5tu5/barebonechat. GitHub. https://github.com/ju5tu5/barebonechat
 
 ---
 
