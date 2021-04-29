@@ -1,0 +1,19 @@
+footer {
+  padding: 1.5rem 0;
+}
+
+footer p {
+  text-align: center;
+}
+
+footer p a {
+  text-decoration: none;
+  color: #0853dd;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+footer p a:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

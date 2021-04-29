@@ -1,3 +1,9 @@
+body {
+  position: relative;
+  background-color: #161D29;
+  color: #eeeeef;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -81,20 +87,32 @@ main section form input:focus {
 }
 
 main section form input[type='submit'] {
-  background-color: #02b173;
+  background-color: #2F80EC;
   color: #eeeeef;
   border: none;
   border-radius: 2px;
 }
 
+/******* Footer *******/
+
 footer {
-  text-align: center;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
 }
 
 footer p {
-  color: #ababab;
-  font-size: 14px;
+  text-align: center;
+}
+
+footer p a {
+  text-decoration: none;
+  color: #2F80EC;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+footer p a:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 @media (min-width: 600px) {

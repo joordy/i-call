@@ -1,176 +1,214 @@
+html {
+  scroll-behavior: smooth;
+}  
 body {
   background-color: #f4f5ff;
   overflow-x: hidden;
 }
 
+/******* Header *******/
+
 header {
-  width: 100%;
-  min-height: 425px;
-  height: 50vh;
-  text-align: center;
-  background: rgb(231, 233, 235);
-  background: linear-gradient(
-    0deg,
-    rgba(231, 233, 235, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
-}
-
-header img {
-  height: 50px;
-  width: auto;;
-}
-
-header nav {
-  padding: 3rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-header nav a {
-  color: #348065;
-  text-decoration: none;
+  padding: 2rem;
 }
 
 header nav ul {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   list-style-type: none;
-  margin: 1rem 0;
 }
 
 header nav ul li {
-  display: none;
-  padding: 0 1rem;
+  margin: 0rem 0rem 0rem 0.5rem ;
 }
 
-header nav > a:first-of-type {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 3rem 1rem 0;
-  font-size: 2rem;
-  font-weight: 700;
+header nav ul li a {
+  text-decoration: none;
+  color: black;
+  border-radius: 2rem;
+  border: 0.5px solid #2F80EC;
+  padding: 0.45rem 1rem;
+
 }
 
-header nav > a:last-of-type {
-  justify-content: flex-end;
-  display: block;
-  padding: 1rem 3rem;
-  border: 1px solid #348065;
-  border-radius: 4px;
+header nav ul li:nth-of-type(4) a {
+  color: #2F80EC;
+  background-color: transparent;
 }
 
-header h1 {
-  color: #348065;
-  font-size: 3.5rem;
-  margin-bottom: 1.5rem;
+header nav ul li:nth-of-type(5) a {
+  color: white;
+  background-color: #2F80EC;
 }
-header h2 {
-  font-size: 1.75rem;
-  font-weight: 400;
-}
+/******* Main *******/
 
 main {
-  width: 90vw;
-  margin: 0 auto;
+  margin: 0 1rem;
 }
-main section {
-  width: 100%;
+
+
+
+main .introduction {
   text-align: center;
 }
 
-main section:nth-child(1) {
-  margin-bottom: -100px;
+main .introduction article:first-of-type {
+  max-width: 450px;
 }
 
-main section:nth-child(1) img {
-  padding: 0 1rem;
-  position: relative;
-  top: -100px;
-  width: 100%;
-  transition: 0.2s;
+main .introduction article h1 {
+  font-size: 1.75rem;
+  margin: 3rem 0 1rem;
 }
 
-main section:nth-child(1) img:hover {
-  transform: scale(1.025);
-}
-
-main section:nth-child(2),
-main section:nth-child(3) {
-  margin-top: 5rem;
-}
-
-main section:nth-child(2) h3 {
+main .introduction article h2 {
+  font-size: 1.5rem;
   font-weight: 300;
+  margin-bottom: 1rem;
 }
 
-main section:nth-child(2) h3 span {
-  font-weight: 700;
+main .introduction article ul {
+  list-style-position: inside;
+  list-style: none;
+
 }
 
-main section:nth-child(2) ul {
-  display: flex;
-  list-style-type: none;
-  justify-content: center;
-  padding: 2rem 0;
-}
-
-main section:nth-child(2) ul li {
-  margin: 0 1rem;
-  font-weight: 700;
-  color: #348065;
-}
-
-main section:nth-child(3) article {
-  padding: 3rem 0;
-}
-
-main section:nth-child(3) h3 {
-  font-size: 2rem;
-}
-
-main section:nth-child(3) article figure img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-}
-
-main section:nth-child(3) article figure figcaption h4 {
-  margin: 1rem 0;
-}
-
-main section:nth-child(3) article figure figcaption p {
-  margin: 1rem 0;
-}
-
-main section:nth-child(4) {
+main .introduction article ul li {
+  margin: 0 0 .5rem 0;
   position: relative;
-  left: -5vw;
-  width: 100vw;
-  padding: 5rem 0;
-  background-color: #348065;
-  color: #f6f0f0;
+  padding-left: 1.5rem;
+
 }
 
-main section:nth-child(4) h3 {
-  font-size: 2rem;
-  margin-bottom: 5rem;
+main .introduction article ul li:before {
+  font-family: 'FontAwesome';
+  content: '\f058';
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* background-color: #0853dd; */
+  color: #2F80EC;
+  border-radius: 1em;
+  border: none;
+  /* color: #0853dd */
 }
 
-main section:nth-child(4) a {
-  padding: 1rem 3rem;
-  border: 1px solid #f6f0f0;
-  border-radius: 4px;
-  color: #f6f0f0;
+main .introduction article div {
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+main .introduction article div a {
+  padding: 0.75rem 1.25rem;
+  color: white;
+  background-color: #2F80EC;
+  border-radius: 8px;
+  border: 0.25px solid #2F80EC;
   text-decoration: none;
-  margin: 0 2rem;
+  margin: 0 .25rem 0 0;
+
 }
+main .introduction article div a:last-of-type {
+  background-color: transparent;
+  color: #2F80EC;
+  margin: 0 0 0 .25rem;
+}
+
+main .introduction article img {
+  padding: 2rem;
+  max-width: 100%;
+}
+
+main .features {
+  padding: 5vw 0;
+}
+
+main .features h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+main .features article  {
+  display: flex;
+  flex-direction: column;
+}
+
+main .features article aside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: .5rem 0 0rem;
+}
+
+main .features article aside div:first-of-type {
+  padding: .5rem;
+  margin-right: 1rem;
+}
+
+main .features article aside div:first-of-type img {
+  width: 48px;
+  height: auto;
+}
+
+main .features article aside div:last-of-type {
+  max-width: 300px;
+}
+
+main .pricing h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+main .pricing p {
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+main .pricing div {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main .pricing div article {
+  width: 100%;
+  text-align: center;
+  background-color: #2F80EC;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  color: #eeeeef;
+  transition: .2s ease;
+}
+
+main .pricing div article a {
+  text-decoration: none;
+  color: #eeeeef;
+}
+
+main .pricing div article:hover {
+  transform: scale(1.05);
+}
+
+main .pricing div article p, 
+main .pricing div article h4 {
+  margin: 0 0 1rem;
+}
+
+/* main .pricing div article h4 {
+  marbot
+} */
+
+/******* Footer *******/
 
 footer {
-  padding: 5rem 0;
+  padding: 1.5rem 0;
 }
 
 footer p {
@@ -179,43 +217,84 @@ footer p {
 
 footer p a {
   text-decoration: none;
-  color: #0853dd;
+  color: #2F80EC;
   font-weight: 600;
+  transition: 0.2s ease;
 }
 
-@media (min-width: 900px) {
-  header nav ul {
-    justify-content: center;
+footer p a:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/******* Media querys *******/
+
+@media screen and (max-width: 768px) {
+  header nav ul li:nth-of-type(1), 
+  header nav ul li:nth-of-type(2), 
+  header nav ul li:nth-of-type(3) {
+    display: none;
   }
-  header nav ul li {
+
+  main section {
+    margin: 4rem 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  header nav ul li:nth-of-type(1) a, 
+  header nav ul li:nth-of-type(2) a, 
+  header nav ul li:nth-of-type(3) a {
+    border: none;
+  }
+
+  main {
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  main .introduction {
+    padding: 10vw 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;  
+    text-align: left;
+  }
+  main .introduction article {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  main .introduction article h1, 
+  main .introduction article ul {
+    margin-bottom: 2rem;
+  }
+  main .introduction article h2 {
+    margin-bottom: 4rem;
+  }
+  main .introduction article div {
+    justify-content: unset;
+  }
+
+  main .introduction article:last-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  main {
-    width: 80vw;
+
+  main .pricing div article {
+    width: calc(33% - 2rem);
   }
-  main section:nth-child(1) {
-    margin-bottom: -150px;
-  }
-  main section:nth-child(1) img {
-    top: -150px;
-    max-height: 550px;
-    max-width: 100%;
-    width: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  main, header {
+    max-width: 1000px;
     margin: 0 auto;
   }
-  main section:nth-child(3) article {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  header {
+    padding: 2em 0;
   }
-
-  main section:nth-child(3) article figure {
-    width: calc(33% - 3rem);
-    margin: 0 0.5rem;
-  }
-  main section:nth-child(4) {
-    left: -10vw;
+  main .introduction {
+    grid-template-columns: 1fr 2fr;  
   }
 }
