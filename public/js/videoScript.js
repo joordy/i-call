@@ -18,8 +18,8 @@ let myVideoStream
 let myPeerConn = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3232', // Development Port
-  // port: '443', // Heroku Port
+  // port: '3232', // Development Port
+  port: '443', // Heroku Port
 })
 
 
@@ -41,13 +41,16 @@ navigator.mediaDevices
     // Prevends form submission
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault()
-      if (chatMsg.value != '') {    // Checks if form isn't empty
-        socket.emit('message', {    // Create message object and send to server
+      // Checks if form isn't empty
+      if (chatMsg.value != '') {    
+        // Create message object and send to server
+        socket.emit('message', {    
           message: chatMsg.value,
           user: myUserName,
           room_ID: roomID,
         })
-        chatMsg.value = ''          // Clear message field.
+        // Clear message field.
+        chatMsg.value = ''          
       }
     })
 
