@@ -7,6 +7,7 @@ require('dotenv').config()
 // Import routes
 const home = require('./renders/get/home')
 const dashboard = require('./renders/get/dashboard')
+const callEnded = require('./renders/get/callEnded')
 const notFound = require('./renders/get/notFound')
 const invite = require('./renders/post/invite')
 const rooms = require('./renders/post/rooms')
@@ -23,8 +24,8 @@ router.use(auth({
 // Get routes
 router.get('/', home)
 router.get('/dashboard', requiresAuth(), dashboard)
-router.get('/*', notFound)
-// router.get('/rooms/:roomID', requiresAuth(), isUserLoggedIn, rooms)
+router.get('/call_ended', requiresAuth(), callEnded)
+// router.get('/*', notFound)
 
 // Post routes
 router.post('/rooms/:roomID', requiresAuth(), rooms)

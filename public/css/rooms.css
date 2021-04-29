@@ -1,12 +1,13 @@
 body {
   position: relative;
-  background-color: #101720;
+  background-color: #161D29;
   color: #eeeeef;
 }
-
 a {
   color: #eeeeef;
 }
+
+/***** Header *****/
 
 header {
   position: absolute;
@@ -15,15 +16,16 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 0.2s ease;
 }
-
 header p {
   font-size: 0.8rem;
 }
-
 header p:first-of-type {
   display: none;
 }
+
+/***** Main *****/
 
 main {
   display: flex;
@@ -31,96 +33,94 @@ main {
   height: 100vh;
   overflow: hidden;
 }
-
 main section {
   transition: 0.2s ease;
 }
 
+/***** Video Container *****/
+
 main .videoGrid {
   position: relative;
-  padding: 1rem;
+  margin: 4rem 0.5rem 5rem 0.5rem;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   place-items: center;
-  width: 100%;
+  width: calc(100vw - 1rem);
   transition: 0.2s ease;
-  height: 100vh;
+  height: calc(100vh - 9rem);
 }
-
 main .videoGrid.active {
   height: 70vh;
 }
-
-main .chatGrid.active {
-  transform: translateY(0);
-}
-
-main video {
-  /* width: clamp(300px, 35%, 600px);
-  height: clamp(250px, 40vh, 250px); */
+main .videoGrid video {
   object-fit: cover;
   margin: 0.5rem;
   border-radius: 8px;
-  width: 80%;
-  max-width: 400px;
-  height: auto;
+  width: 90%;
+  height: 250px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.1), 0 6px 20px 0 rgba(255, 255, 255, 0.1);
 }
-
-main .videoGrid aside {
+main .videoControls {
   color: #eeeeef;
   border-radius: 8px;
   position: absolute;
-  bottom: 1rem;
+  bottom: -4.5rem;
   left: 50%;
   transform: translateX(-50%);
+  padding: 0.5rem 0;
 }
-
-main .videoGrid aside ul {
+main .videoControls ul {
   height: 100%;
-  padding: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-main .videoGrid aside ul li {
+main .videoControls ul li {
   list-style-type: none;
-  padding: 1rem;
-  margin: 0 0.5rem;
-  background-color: #1c1d26;
+  margin: 0 0.25rem;
+  background-color: #2F80EC;
   border-radius: 50%;
-  width: 65px;
-  height: 65px;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-items: center;
 }
-
-main .videoGrid aside ul li:nth-child(3) {
-  background-color: rgb(170 0 0);
+main .videoControls ul li img {
+  width: 24px;
+  height: auto;
 }
-
-main .videoGrid .invitePopUp {
+main .videoControls ul li:nth-child(3) {
+  background-color: #FF4B4B;
+}
+main .invitePopUp {
   position: fixed;
-  z-index: 1;
-  background-color: hotpink;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 150px;
-  border-radius: 8px;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: none;
+  transform: unset;
 }
-
-main .videoGrid .invitePopUp.activePopup {
-  display: block;
+main .invitePopUp.activePopup {
   display: flex;
 }
-
-main .videoGrid .invitePopUp input {
+main .invitePopUp > div {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    background-color: #151e2b;
+    width: min(80vw, 400px);
+}
+main .invitePopUp input {
   width: 80%;
   margin: 0 auto;
   padding: 0.5rem;
@@ -128,8 +128,7 @@ main .videoGrid .invitePopUp input {
   border: none;
   border-radius: 4px 4px 0 0;
 }
-
-main .videoGrid .invitePopUp button {
+main .invitePopUp button {
   width: 80%;
   margin: 0 auto;
   padding: 0.5rem;
@@ -137,19 +136,26 @@ main .videoGrid .invitePopUp button {
   border-radius: 0 0 4px 4px;
 }
 
+/***** Chat container *****/
+
 main .chatGrid {
   transform: translateY(30vh);
   height: 30vh;
   background-color: #17202c;
   transition: 0.2s ease;
   position: relative;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.1), 0 6px 20px 0 rgba(255, 255, 255, 0.1);
 }
+main .chatGrid.active {
+  transform: translateY(0);
+}
+
+/** Chat container messages **/
 
 main .chatGrid .chatContainer {
   height: calc(100% - 56px);
   width: 100%;
 }
-
 main .chatGrid .chatContainer ul {
   width: 100%;
   height: 100%;
@@ -158,7 +164,6 @@ main .chatGrid .chatContainer ul {
   color: black;
   overflow-y: scroll;
 }
-
 main .chatGrid .chatContainer ul li {
   position: relative;
   display: flex;
@@ -168,11 +173,9 @@ main .chatGrid .chatContainer ul li {
   list-style-type: none;
   border-radius: 8px;
 }
-
 main .chatGrid .chatContainer ul li:last-of-type {
   margin-bottom: 1rem;
 }
-
 main .chatGrid .chatContainer ul li p:nth-of-type(1) {
   padding: 0.75rem;
   width: 100%;
@@ -180,28 +183,24 @@ main .chatGrid .chatContainer ul li p:nth-of-type(1) {
   border-radius: 4px;
   margin-bottom: 0.5rem;
 }
-
 main .chatGrid .chatContainer ul li p:nth-of-type(2),
 main .chatGrid .chatContainer ul li p:nth-of-type(3) {
   font-size: 14px;
   font-weight: 300;
   margin-right: 0.5rem;
 }
-
 main .chatGrid .chatContainer ul li p:nth-of-type(3):before {
   content: '— ';
 }
-
 main .chatGrid .chatContainer ul .ownMessage {
   justify-content: flex-end;
   text-align: right;
 }
-
 main .chatGrid .chatContainer ul .ownMessage p:nth-of-type(1) {
-  background-color: #348065;
+  background-color: #2F80EC;
 }
 
-/** Chat container **/
+/** Chat container Form **/
 main .chatGrid .chatForm {
   position: absolute;
   bottom: 0;
@@ -211,11 +210,9 @@ main .chatGrid .chatForm {
   border-radius: 4px;
   padding: 0.2rem;
 }
-
 main .chatGrid .chatForm form {
   display: flex;
 }
-
 main .chatGrid .chatForm form input[type='text'] {
   font-size: 16px;
   padding: 5px;
@@ -225,7 +222,6 @@ main .chatGrid .chatForm form input[type='text'] {
   color: white;
   border: none;
 }
-
 main .chatGrid .chatForm form button {
   padding: 5px 15px;
   background: transparent;
@@ -240,62 +236,63 @@ main .chatGrid .chatForm form button {
   border-radius: 5px;
   margin: 1px;
 }
-
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #585f67;
+  background: #585f67; /* Track */
 }
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #101720;
+  background: #101720; /* Handle */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2c2d2f; /* Handle on hover */
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #2c2d2f;
-}
 /** States **/
 .activeMenuItem {
   background-color: rgba(47, 47, 57, 0.7);
 }
+main .chatGrid .chatForm form input:focus {
+  outline: none;
+}
 
 @media screen and (min-width: 800px) {
+  header.active {
+    width: clamp(calc(100% - 300px - 2rem), calc(100% - 40vw - 2rem), calc(100% - 600px - 2rem));
+  }
   header p:first-of-type {
     display: block;
   }
-
   main {
     flex-direction: row;
   }
-
-  main .videoGrid {
-    width: 100%;
-    height: 100vh;
-    grid-template-columns: 1fr 1fr;
-  }
-
   main .videoGrid.active {
     width: clamp(calc(100% - 300px), calc(100% - 40vw), calc(100% - 600px));
-    height: 100vh;
+    height: calc(100vh - 11rem);
   }
-
+  main .videoGrid {
+    margin: 4rem 0.5rem 7rem 0.5rem;
+    height: calc(100vh - 11rem);
+  }
+  main .videoControls {
+    bottom: -6rem;
+  }
+  main .videoControls ul li {
+    margin: 0 0.5rem;
+    width: 4rem;
+    height: 4rem;
+  }
   main .chatGrid {
     width: 0%;
     transform: translateX(40%);
+    height: 100vh;
   }
-
   main .chatGrid.active {
     width: clamp(300px, 40vw, 600px);
     transform: translateX(0);
   }
-
-  main .videoGrid,
-  main .chatGrid {
-    height: 100vh;
-  }
-
-  main .videoGrid aside {
-    bottom: 4rem;
-  }
 }
+
+/* @media screen and (max-height: 800px) {
+  main .videoGrid video {
+    height: 100%;
+  }
+} */
