@@ -50,6 +50,8 @@ main {
   margin: 0 1rem;
 }
 
+
+
 main .introduction {
   text-align: center;
 }
@@ -71,10 +73,28 @@ main .introduction article h2 {
 
 main .introduction article ul {
   list-style-position: inside;
+  list-style: none;
+
 }
 
 main .introduction article ul li {
   margin: 0 0 .5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+
+}
+
+main .introduction article ul li:before {
+  font-family: 'FontAwesome';
+  content: '\f058';
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* background-color: #0853dd; */
+  color: #0853dd;
+  border-radius: 1em;
+  border: none;
+  /* color: #0853dd */
 }
 
 main .introduction article div {
@@ -134,62 +154,55 @@ main .features article aside div:first-of-type {
 
 main .features article aside div:first-of-type img {
   width: 48px;
-  height: 48px;
+  height: auto;
 }
 
 main .features article aside div:last-of-type {
-  max-width: 450px;
+  max-width: 300px;
 }
-/* main {
+
+main .pricing h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+main .pricing p {
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+main .pricing div {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main .pricing div article {
+  width: 100%;
   text-align: center;
-}
-
-main h1 {
-  font-size: 3rem;
-}
-
-main .introduction {
-  min-height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-main .introduction h1 {
-  margin: 3rem 0;
-}
-main .introduction h2 {
-  font-weight: 300;
-}
-
-main .introduction div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  height: 75px;
-  max-width: 450px;
-  margin: 3rem auto 0;
-}
-
-main .introduction div a {
-  padding: 0.75rem 2rem;
-  color: white;
   background-color: #0853dd;
-  border-radius: 8px;
-  border: 0.25px solid #0853dd;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  color: #eeeeef;
+  transition: .2s ease;
+}
+
+main .pricing div article a {
   text-decoration: none;
-  margin: 0 1rem 0 0;
-
-}
-main .introduction div a:last-of-type {
-  background-color: transparent;
-  color: #0853dd;
-  margin: 0 0 0 1rem;
+  color: #eeeeef;
 }
 
-main .introduction img {
-  max-width: 100%;
+main .pricing div article:hover {
+  transform: scale(1.05);
+}
+
+main .pricing div article p, 
+main .pricing div article h4 {
+  margin: 0 0 1rem;
+}
+
+/* main .pricing div article h4 {
+  marbot
 } */
 
 /******* Footer *******/
@@ -221,6 +234,10 @@ footer p a:hover {
   header nav ul li:nth-of-type(2), 
   header nav ul li:nth-of-type(3) {
     display: none;
+  }
+
+  main section {
+    margin: 4rem 0;
   }
 }
 
@@ -262,6 +279,10 @@ footer p a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  main .pricing div article {
+    width: calc(33% - 2rem);
   }
 }
 
