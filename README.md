@@ -4,11 +4,16 @@
 
 iCall is a multi-user video platform where you can connect with your friends, based on a WebRTC connection. The app makes it possible to have a video connection, chat functionality, and a command to send random Cat Facts using the [catfacts](#-api) API. The app will be made with NodeJS, Express, Express-Handlebars, Socket.io and PeerJS. Check out my [NPM Packages](#-npm-packages) to see which other packages I've used.
 
+
+![Mockup of iCall video chat on iPad size](https://user-images.githubusercontent.com/48051912/116614928-dadc4c80-a93a-11eb-861f-86b883efb503.png)
+
 ---
 
 ## 🚀 **Live view:**
 
 You can visit the project [iCall application here](https://i-call.herokuapp.com/)
+
+
 
 ---
 
@@ -51,18 +56,6 @@ The concept I chose to develop is the video platform in combination with the Cat
 ## 💹 **Data Flow Diagram**
 
 ![Data flow Diagram](https://user-images.githubusercontent.com/48051912/116613210-b1222600-a938-11eb-9be9-89abdec8e82d.jpg)
-
-<!-- # https://asciiflow.com/#/
-
-# - Teken alle grote componenten (client, server, API)
-
-# - Schrijf onder elk component wat er in het datamodel aanwezig is
-
-# - Teken de lijnen/pijlen voor data die tussen componenten gedeeld worden
-
-# - Voeg de methode voor verkrijgen en versturen van data (pub/sub, http request/response, socket request/response, authorization, Oauth)
-
-# - Voeg deze data-flow toe aan je readme -->
 
 ---
 
@@ -122,21 +115,52 @@ async function getRandomCatFact() {
 
 ## 🚀 **Features**
 
-### **Video Connection**
- 
-lorem
+### **Service features**
+- Communicate based on webcam view and audio
+- Chat functionality
+- Register/Login authentication with Google
+- Inviting users to conference room
 
-### **Chat functionality**
+### **API Features**
+- Randomnized Cat Facts
 
-lorem
 
-### **Register/Signin **
+---
 
-lorem
 
-### **Cat fact command**
 
-lorem
+
+## ☑️ **Wishlist**
+
+Below is a list of features I'd love to add my videocall platform. The features are split up using the MoSCoW method.
+
+### **M** — _Must Have_
+- [x] Video connection with webcam
+- [x] Video connection with audio
+- [x] Have seperated rooms
+- [x] Connect with CatFacts API
+- [x] Chat function with usernames
+- [x] Text command for API
+
+### **S** — _Should Have_
+- [x] Add styling
+- [x] Possible to stop webcam sharing
+- [x] Possible to stop audio sharing
+- [x] Invite users 
+- [X] End call button
+- [x] Smooth transitions
+- [X] Disconnecting feedback
+
+### **C** — _Could Have_
+- [x] Add User Authentication
+- [x] Homepage of the product/service
+- [ ] Smaller video views, clickable to expand
+
+### **W** — _Would Have_
+- [ ] User accounts with database
+- [ ] Video call history
+- [ ] List of current participants
+- [ ] Screensharing
 
 ---
 
@@ -161,23 +185,21 @@ lorem
 
 ## 💻 **Installation**
 
-### **Work on the project**
-
-- **Clone the repository**
+**Clone the repository**
   ```bash
     git clone https://github.com/joordy/real-time-web-2021.git
   ```
-- **Navigate to the repository and install the packages**
+**Navigate to the repository and install the packages**
   ```bash
     npm install
   ```
-- **Start local dev environment**
+**Start local dev environment**
 
   ```bash
     npm run dev
   ```
 
-- **Build export for deployment**
+**Build export for deployment**
   ```bash
     npm run build
   ```
