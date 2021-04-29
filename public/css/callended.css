@@ -1,0 +1,34 @@
+body {
+  background-color: #101720;
+  color: #eeeeef;
+}
+
+main {
+  width: 100%;
+  height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main h2 {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin: 2rem 0 0 0;
+}
+
+main a {
+  color: #2F80EC;
+  padding: 1rem 3rem;
+  border: 0.2px solid #2F80EC;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 2rem;
+}
+
+footer {
+  height: 3rem;
+  text-align: center;
+}

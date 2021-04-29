@@ -30,7 +30,6 @@ navigator.mediaDevices
   })
   .then((stream) => {
     myVideoStream = stream
-
     addNewUserVideoStream(userVideo, stream, myPeerConn._id)
 
     // When new user will connect, it fires the NewUserConnected function on line 124
@@ -42,19 +41,13 @@ navigator.mediaDevices
     // Prevends form submission
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault()
-      
-      // Checks if form isn't empty
-      if (chatMsg.value != '') {
-        
-        // Create message object and send to server
-        socket.emit('message', {
+      if (chatMsg.value != '') {    // Checks if form isn't empty
+        socket.emit('message', {    // Create message object and send to server
           message: chatMsg.value,
           user: myUserName,
           room_ID: roomID,
         })
-
-        // Clear message field.
-        chatMsg.value = ''
+        chatMsg.value = ''          // Clear message field.
       }
     })
 
@@ -106,7 +99,7 @@ myPeerConn.on('call', async (answerCall) => {
   // When user end's connection, send to dashboard page
   endCall.addEventListener('click', (e) => {
     console.log('stop bellen')
-    window.location.href = '/dashboard'
+    window.location.href = '/call_ended'
   })
 
 })
@@ -141,7 +134,7 @@ function newUserConnected(userID, streams) {
   // When user end's connection, send to dashboard page
   endCall.addEventListener('click', (e) => {
     console.log('Dit is een beindig bel knop')
-    window.location.href = '/dashboard'
+    window.location.href = '/call_ended'
   })
 }
 
