@@ -22,7 +22,6 @@ let myPeerConn = new Peer(undefined, {
   port: '443', // Heroku Port
 })
 
-
 navigator.mediaDevices
   .getUserMedia({
     video: true,
@@ -42,15 +41,15 @@ navigator.mediaDevices
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault()
       // Checks if form isn't empty
-      if (chatMsg.value != '') {    
+      if (chatMsg.value != '') {
         // Create message object and send to server
-        socket.emit('message', {    
+        socket.emit('message', {
           message: chatMsg.value,
           user: myUserName,
           room_ID: roomID,
         })
         // Clear message field.
-        chatMsg.value = ''          
+        chatMsg.value = ''
       }
     })
 
@@ -58,7 +57,7 @@ navigator.mediaDevices
     socket.on('createMessage', (message) => {
       // Create chat element function
       const chatElem = createChatElement(message)
-  
+
       // Select chat message container and append element
       const chatList = document.querySelector('.chatMessages')
       chatList.appendChild(chatElem)
@@ -98,13 +97,12 @@ myPeerConn.on('call', async (answerCall) => {
   socket.on('userDisconnecting', (elem) => {
     removeVideo(answerCall, elem)
   })
-  
+
   // When user end's connection, send to dashboard page
   endCall.addEventListener('click', (e) => {
     console.log('stop bellen')
     window.location.href = '/call_ended'
   })
-
 })
 
 // Opens connection of PeerJS, and sends roomID, peerID and userName to server.
@@ -151,27 +149,27 @@ function addNewUserVideoStream(videoElement, stream, className) {
 }
 
 function removeVideo(callConnection, elem) {
-    console.log('This lad leaved:', elem)
+  console.log('This lad leaved:', elem)
 
-    // Checks if provider connections are existing
-    if (callConnection.provider._connections) {
-      let allUserConnections = []
-      
-      // Push all object values in userArr
-      for (let item of callConnection.provider._connections) {
-        allUserConnections.push(item[0])
-      }
-      
-      // Filter leaved user ID with the connection ID's
-      const leavedUsers = allUserConnections.filter(id => id === elem)
+  // Checks if provider connections are existing
+  if (callConnection.provider._connections) {
+    let allUserConnections = []
 
-      // If leavedUsers exists, find HTML element of leaved user and remove it from HTML
-      if (leavedUsers) {
-        let leavedUserVid = document.getElementsByClassName(`${leavedUsers[0]}`)
-        for (let item of leavedUserVid) {
-          console.log(item);
-          item.remove()
-        }
+    // Push all object values in userArr
+    for (let item of callConnection.provider._connections) {
+      allUserConnections.push(item[0])
+    }
+
+    // Filter leaved user ID with the connection ID's
+    const leavedUsers = allUserConnections.filter((id) => id === elem)
+
+    // If leavedUsers exists, find HTML element of leaved user and remove it from HTML
+    if (leavedUsers) {
+      let leavedUserVid = document.getElementsByClassName(`${leavedUsers[0]}`)
+      for (let item of leavedUserVid) {
+        console.log(item)
+        item.remove()
       }
     }
+  }
 }
